@@ -50,23 +50,48 @@
 #filter{
     height: calc( 90vh - 160px );
     padding: 0px !important;
+    min-height: 400px;
+
 }
 
 #filterdocuments{
-    height: calc( (90vh - 175px) / 2 );
-    min-height: 40px;
-    border-bottom: solid #1B1B1B 1px;
+    height: calc( (90vh - 160px) / 2 );
+    min-height: 200px;
+    padding: 0px;
 }
 
 #filtersearch{
-    height: calc( (90vh - 175px) / 2 );
-    min-height: 40px;
-    border-top: solid #1B1B1B 1px;
+    height: calc( (90vh - 160px) / 2 );
+    min-height: 200px;
+    padding: 0px;
+}
+
+#filterdocumentsinner{
+    min-height: 170px !important;
+    height: calc( ((90vh - 160px) / 2) - 30px );
+
+}
+
+#filtersearchinner{
+    min-height: 170px !important;
+    height: calc( ((90vh - 160px) / 2) - 30px );
+
+}
+
+#filterdocumentsheader{
+    height: 30px;
+
+}
+
+#filtersearchheader{
+    height: 30px;
+
 }
 
 
 #content{
     height: calc(95vh - 140px);
+    min-height: 400px;
 
 }
 
