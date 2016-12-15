@@ -1,18 +1,49 @@
+/*Allgemeine Attribute */
+
 * {
     color: #ffffff;
     font-family: Arial;
     font-weight: 700;
 }
 
-.headertext{
+.texttomid{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.texttoverticalmid{
+    display: flex;
+    align-items: center;
+}
+
+.mainbuttons{
+    background-color: #FF9900;
+    color:#000000;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+
+    min-height: 30px;
+}
+
+.mainbuttons:hover{
+    background-color: #ffa31a;
+}
+
+/*Spezifische Attribute*/
+
+.headertext {
     font-size: 20px;
 }
 
-#header{
+#header {
     height: 50px;
 }
 
-#login{
+#login {
     float: right;
     display: inline;
     margin-top: 10px;
@@ -21,13 +52,12 @@
     color: #7F7E7D;
 }
 
-#login:hover{
+#login:hover {
     color: #ffffff;
     cursor: pointer;
 }
 
-
-#logo{
+#logo {
     float: left;
     width: 190px;
     height: 30px;
@@ -36,97 +66,96 @@
     margin-bottom: 10px;
 }
 
-
-
-#footer{
+#footer {
     height: 50px;
 }
 
-#main{
-  /*  height: calc(100vh - 100px);*/
+#main {
+    /*  height: calc(100vh - 100px);*/
     /*padding: 50px;*/
 }
 
-#filter{
-    height: calc( 90vh - 160px );
+
+#filter {
+    height: calc(90vh - 160px);
     padding: 0px !important;
     min-height: 400px;
 
 }
 
-#filterdocuments{
-    height: calc( (90vh - 160px) / 2 );
+#filterdocuments {
+    height: calc((90vh - 160px) / 2);
     min-height: 200px;
     padding: 0px;
 }
 
-#filtersearch{
-    height: calc( (90vh - 160px) / 2 );
+#filtersearch {
+    height: calc((90vh - 160px) / 2);
     min-height: 200px;
     padding: 0px;
 }
 
-#filterdocumentsinner{
+#filterdocumentsinner {
     min-height: 170px !important;
-    height: calc( ((90vh - 160px) / 2) - 30px );
+    height: calc(((90vh - 160px) / 2) - 30px);
 
 }
 
-#filtersearchinner{
+#filtersearchinner {
     min-height: 170px !important;
-    height: calc( ((90vh - 160px) / 2) - 30px );
+    height: calc(((90vh - 160px) / 2) - 30px);
 
 }
 
-#filterdocumentsheader{
+#filterdocumentsheader {
     height: 30px;
 
 }
 
-#filtersearchheader{
+#filtersearchheader {
     height: 30px;
 
 }
 
-
-#content{
+#content {
     height: calc(95vh - 140px);
-    min-height: 400px;
+    min-height: 450px;
 
 }
 
-#contentheader{
+#contentheader {
     height: 5vh;
 }
 
-#filterpanel{
+#filterpanel {
     padding: 20px;
 }
 
-#documentsearch{
+#documentsearch {
     height: 5vh;
     margin-bottom: 10px;
 }
 
-#documentfilter{
+#documentfilter {
     height: 5vh;
     margin-bottom: 10px;
 }
 
-#contentpanel{
+#contentpanel {
     padding: 20px;
 }
 
-.background{
+.background {
     background-color: #000000;
 }
 
-.headerpanel{
+.headerpanel {
     background-color: #1B1B1B;
     min-height: 30px;
+
 }
 
-.webpanel{
+.webpanel {
     background-color: #0F0F0F;
     border: solid #1B1B1B 2px;
     min-height: 100px;
@@ -135,9 +164,9 @@
 
 
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
 
-    #login{
+    #login {
         margin-right: -5px;
     }
 
