@@ -1,5 +1,9 @@
 /*Allgemeine Attribute */
 
+body{
+    min-width: 350px;
+}
+
 * {
     color: #ffffff;
     font-family: Arial;
@@ -27,6 +31,7 @@
     border: none;
 
     min-height: 30px;
+    font-size: 20px;
 }
 
 .mainbuttons:hover{
@@ -79,31 +84,31 @@
 #filter {
     height: calc(90vh - 160px);
     padding: 0px !important;
-    min-height: 400px;
+   /* min-height: 400px;*/
 
 }
 
 #filterdocuments {
-    height: calc((90vh - 160px) / 2);
-    min-height: 200px;
-    padding: 0px;
+    height: calc((90vh - 160px) / 2 + 100px);
+    padding: 0px !important;
+   /* min-height: 200px;*/
 }
 
 #filtersearch {
-    height: calc((90vh - 160px) / 2);
-    min-height: 200px;
+    height: calc((90vh - 160px) / 2 - 100px);
     padding: 0px;
 }
 
 #filterdocumentsinner {
-    min-height: 170px !important;
-    height: calc(((90vh - 160px) / 2) - 30px);
+
+    height: calc(((90vh - 160px) / 2) - 30px + 100px);
+    padding: 5px;
 
 }
 
 #filtersearchinner {
-    min-height: 170px !important;
-    height: calc(((90vh - 160px) / 2) - 30px);
+
+    height: calc(((90vh - 160px) / 2) - 30px - 100px);
 
 }
 
@@ -152,6 +157,7 @@
 .headerpanel {
     background-color: #1B1B1B;
     min-height: 30px;
+    font-size: 20px;
 
 }
 

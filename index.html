@@ -11,7 +11,12 @@
 
     <script src="extern/jquery/jquery.js"></script>
     <script src="extern/bootstrap/js/bootstrap.js"></script>
+    <script src="extern/angularjs/angularjs.js"></script>
+
     <script src="code/js/mainpage.js"></script>
+    <script src="code/js/controller.js"></script>
+
+
 
 </head>
 <body>
@@ -36,16 +41,20 @@
             <button type="button" class="col-lg-12 col-md-12 col-xs-12  texttomid mainbuttons" id="documentsearch">Dokumentensuche </button>
 
 
-            <div class="col-lg-12 col-md-12 col-xs-12 " id="filter">
+            <div class="col-lg-12 col-md-12 col-xs-12 " id="filter" ng-app="filterapp" ng-controller="filtercontroller">
 
                 <div class="col-lg-12 col-md-12 col-xs-12 " id="filterdocuments">
                     <div class="col-lg-12 col-md-12 col-xs-12 headerpanel texttomid" id="filterdocumentsheader">Dokumentenfilter </div>
-                    <div class="col-lg-12 col-md-12 col-xs-12 webpanel" id="filterdocumentsinner"></div>
+                    <div class="col-lg-12 col-md-12 col-xs-12 webpanel" id="filterdocumentsinner" filterelements>
+
+
+
+                    </div>
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-xs-12 " id="filtersearch">
                     <div class="col-lg-12 col-md-12 col-xs-12 headerpanel texttomid" id="filtersearchheader">Dokumentensuche</div>
-                    <div class="col-lg-12 col-md-12 col-xs-12 webpanel " id="filtersearchinner">Content</div>
+                    <div class="col-lg-12 col-md-12 col-xs-12 webpanel " id="filtersearchinner" >Content</div>
                 </div>
 
 

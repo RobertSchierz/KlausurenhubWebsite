@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="extern/angularjs/angularjs.js"></script>
+
+
+</head>
+<body>
+
+
+
+<div ng-app="myApp" ng-controller="myController">
+
+    <input type="text"  ng-model="inputValue">
+
+
+    <p>
+        <my-directive text-field-value="blue"></my-directive>
+    </p>
+
+</div>
+
+
+<script>
+
+    var app = angular.module("myApp", []);
+
+    app.controller("myController", function($scope){
+        console.log("Controller called!");
+
+        $scope.inputValue = "AMK";
+
+    })
+
+    app.directive("myDirective", function(){
+
+
+        return {
+            scope: {
+              startValue: "@textFieldValue"
+            },
+            restrict: "E",
+            template: function(){
+               return '<input type="text" ng-model="startValue" style="background-color:{{startValue}};"/>';
+            }
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>
