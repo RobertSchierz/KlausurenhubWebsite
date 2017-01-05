@@ -11,15 +11,36 @@ var filterApp = angular.module('filterapp', []);
 var filterAppController = filterApp.controller('filtercontroller',  function($scope, $http) {
 
 
+    var filter = {
+        school: null,
+        course: null
+    };
+
 
     $scope.schoolheader = "Hochschulen";
+    $scope.courseheader = "Studiengang";
 
-    $scope.loadAvailableSchools = function(){
-       $http.post('../php/getAvailableSchools.php')
+    $scope.filter = filter;
+
+    $scope.loadAvailableOptions = function(scopeVariableName, database){
+
+        var requestData = {'database' : database};
+
+       $http.post('../php/getAvailableOptions.php', requestData)
            .then(function(response){
-               $scope.availableSchools = response.data;
-               console.log($scope.availableSchools);
+               $scope[scopeVariableName] = response.data;
+
+
            })
+
+    };
+
+    $scope.setFilterelementToDecision = function(selectedItem, header, source){
+        $scope[header] = selectedItem;
+        $scope.filter[source] = selectedItem;
+        console.log($scope.filter);
+
+
 
     };
 

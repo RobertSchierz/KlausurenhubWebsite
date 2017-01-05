@@ -6,37 +6,31 @@
 
             <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_school">
                 <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true">
-                 <span id="school_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableSchools()" > {{schoolheader}}    </span>
+                 <span id="school_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableSchools', 'schools')" > {{schoolheader}}    </span>
                 </button>
                <ul class="dropdown-menu-filter dropdown-menu " id="school_list" role="menu" >
-                   <li class="dropdown_listelement" ng-repeat="availableSchool in availableSchools "><a >{{availableSchool.Name}}</a></li>
-
-
+                   <li class="dropdown_listelement" ng-repeat="availableSchool in availableSchools "><a ng-click="setFilterelementToDecision(availableSchool.Name, 'schoolheader', 'school')"  >{{availableSchool.Name}}</a></li>
                </ul>
             </div>
 
         </div>
 
 
-
-
         <div class="col-lg-12 col-md-12 col-xs-12 texttomid combobox_panel">
 
             <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_course">
                 <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true">
-                    <span id="course_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " > Studiengang </span>
+                    <span id="course_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableCourses', 'courses')" > {{courseheader}} </span>
                 </button>
                 <ul class="dropdown-menu-filter dropdown-menu " id="course_list" role="menu">
+                    <li class="dropdown_listelement" ng-repeat="availableCourse in availableCourses "> <a ng-click="setFilterelementToDecision(availableCourse.Name, 'courseheader', 'course')"> {{availableCourse.Name}}</a></li>
 
-                    <li class="dropdown_listelement"><a >Informatik</a></li>
-                    <li class="dropdown_listelement"><a>Gartenbau</a></li>
-                    <li class="dropdown_listelement"><a>Architektur</a></li>
                 </ul>
             </div>
 
         </div>
 
-
+<!--
         <div class="col-lg-12 col-md-12 col-xs-12">
 
             <ul class="nav nav-pills col-lg-12 col-md-12 col-xs-12 texttomid" id="filter_navbar">
@@ -63,12 +57,14 @@
 
         </div>
 
+
+        <!--
         <div class="col-lg-12 col-md-12 col-xs-12  ">
 
              <input type="checkbox" value="" id="save_decision"><label id="save_decision_label"> Auswahl speichern</label>
 
             </div>
 
-
+-->
     </div>
 </div>
