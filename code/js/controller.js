@@ -6,9 +6,9 @@
 
 
 
-var filterApp = angular.module('filterapp', []);
+var app = angular.module('app', []);
 
-var filterAppController = filterApp.controller('filtercontroller',  function($scope, $http) {
+var filterAppController = app.controller('filtercontroller',  function($scope, $http) {
 
 
     var filter = {
@@ -47,6 +47,24 @@ var filterAppController = filterApp.controller('filtercontroller',  function($sc
 
 
 });
+
+var contentAppController = app.controller('contentcontroller', function($scope, $http){
+
+    $scope.initContent = function(){
+
+        $http.post('../php/getClauses.php')
+            .then(function(response){
+                $scope.clauses = response.data;
+                console.log($scope.clauses)
+
+            })
+
+    };
+
+
+});
+
+
 
 
 

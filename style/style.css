@@ -125,6 +125,7 @@ body{
 #content {
     height: calc(95vh - 140px);
     min-height: 450px;
+    overflow: auto;
 
 }
 
@@ -168,6 +169,27 @@ body{
 
 }
 
+.previewPDF{
+    color:black;
+    font-size: 50px;
+
+}
+
+.contentheader{
+    color:black !important;
+    font-size: 20px;
+}
+
+.contentelement{
+    margin: 22px !important;
+    padding: 0px !important;
+
+}
+
+.contentsubtext{
+    color: black !important;
+    font-size:10px;
+}
 
 
 @media (max-width: 720px) {
