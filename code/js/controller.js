@@ -8,13 +8,15 @@
 
 var app = angular.module('app', []);
 
+var filter = {
+    schoolID: null,
+    courseID: null
+};
+
 var filterAppController = app.controller('filtercontroller',  function($scope, $http) {
 
 
-    var filter = {
-        school: null,
-        course: null
-    };
+
 
 
     $scope.schoolheader = "Hochschulen";
@@ -36,13 +38,46 @@ var filterAppController = app.controller('filtercontroller',  function($scope, $
     };
 
     $scope.setFilterelementToDecision = function(selectedItem, header, source){
-        $scope[header] = selectedItem;
-        $scope.filter[source] = selectedItem;
+        $scope[header] = selectedItem[source + "Name"];
+        $scope.filter[source + "ID"] = selectedItem[source + "ID"]
         console.log($scope.filter);
 
-
+        $scope.updateContent();
 
     };
+
+    $scope.updateContent = function(){
+
+
+        var filterQuery = "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, clauses.schoolID, clauses.courseID "+
+        "FROM clauses " +
+        "LEFT JOIN courses " +
+        "ON clauses.courseID = courses.courseID " +
+        "LEFT JOIN schools " +
+        "ON clauses.schoolID = schools.schoolID " +
+        "WHERE ";
+
+           for(var key in filter){
+               if(filter.hasOwnProperty(key) && filter[key] != null){
+                   filterQuery += ("clauses." + key +" = " + "'"+filter[key]+"' AND ");
+
+               }
+           }
+
+        filterQuery = filterQuery.slice(0, - 4);
+
+        var requestData = {'query' : filterQuery };
+
+        console.log(filterQuery);
+
+            $http.post('../php/getFilteredQuery.php', requestData)
+                .then(function(response){
+
+                    console.log(response.data);
+
+
+                })
+    }
 
 
 
