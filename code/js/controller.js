@@ -3,9 +3,6 @@
  */
 
 
-
-
-
 var app = angular.module('app', []);
 
 var filter = {
@@ -13,11 +10,10 @@ var filter = {
     courseID: null
 };
 
-var filterAppController = app.controller('filtercontroller',  function($scope, $http) {
 
+var filterAppController = app.controller('filtercontroller',  function($scope, $http ) {
 
-
-
+    $scope.checkDisplay = true;
 
     $scope.schoolheader = "Hochschulen";
     $scope.courseheader = "Studiengang";
@@ -44,59 +40,85 @@ var filterAppController = app.controller('filtercontroller',  function($scope, $
 
         $scope.updateContent();
 
+
+
     };
 
     $scope.updateContent = function(){
 
 
+
         var filterQuery = "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, clauses.schoolID, clauses.courseID "+
-        "FROM clauses " +
-        "LEFT JOIN courses " +
-        "ON clauses.courseID = courses.courseID " +
-        "LEFT JOIN schools " +
-        "ON clauses.schoolID = schools.schoolID " +
-        "WHERE ";
+            "FROM clauses " +
+            "LEFT JOIN courses " +
+            "ON clauses.courseID = courses.courseID " +
+            "LEFT JOIN schools " +
+            "ON clauses.schoolID = schools.schoolID " +
+            "WHERE ";
 
-           for(var key in filter){
-               if(filter.hasOwnProperty(key) && filter[key] != null){
-                   filterQuery += ("clauses." + key +" = " + "'"+filter[key]+"' AND ");
+        for(var key in filter){
+            if(filter.hasOwnProperty(key) && filter[key] != null){
+                filterQuery += ("clauses." + key +" = " + "'"+filter[key]+"' AND ");
 
-               }
-           }
+            }
+        }
 
         filterQuery = filterQuery.slice(0, - 4);
 
         var requestData = {'query' : filterQuery };
 
-        console.log(filterQuery);
+        $http.post('../php/getFilteredQuery.php', requestData)
+            .then(function(response){
 
-            $http.post('../php/getFilteredQuery.php', requestData)
-                .then(function(response){
-
-                    console.log(response.data);
+                $scope.clauses = response.data;
 
 
-                })
+            })
     }
 
 
-
-});
-
-var contentAppController = app.controller('contentcontroller', function($scope, $http){
-
     $scope.initContent = function(){
 
-        $http.post('../php/getClauses.php')
-            .then(function(response){
-                $scope.clauses = response.data;
-                console.log($scope.clauses)
 
-            })
+        $http.post('../php/getClauses.php').then(function(response){
+
+
+
+
+            $scope.clauses= response.data;
+
+
+
+        });
+
 
     };
 
 
+    $scope.changeToContentView = function(clause){
+        $scope.checkDisplay = false;
+
+
+    }
+
+
+});
+
+filterAppController.directive('contentdisplay', function(){
+    return{
+        restrict : "A",
+        templateUrl :  "../loadedhtml/content/clauseContentDisplay.html"
+
+    };
+});
+
+filterAppController.directive('contentoverviewdisplay', function(){
+    return{
+        restrict : "A",
+        templateUrl :  "../loadedhtml/content/clauseOverviewDisplay.html"
+
+
+    };
 });
 
 
@@ -108,6 +130,13 @@ filterAppController.directive('filterelements', function() {
         templateUrl:  "../loadedhtml/mainpage/filter.html"
     };
 });
+
+
+
+
+
+
+
 
 
 
