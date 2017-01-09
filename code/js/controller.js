@@ -8,6 +8,9 @@ var app = angular.module('app', []);
 var initTimer = 0;
 var filter = {};
 
+var filterActive = true;
+var searchActive = false;
+
 function resetFilter() {
     filter = {
         schoolID: null,
@@ -127,6 +130,36 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
 });
 
+var mainButtonController = app.controller('mainbuttoncontroller', function($scope){
+
+    $scope.initMainButtons = function(){
+        $scope.handlefilteractivation = "deactivatedbutton";
+        $scope.filterdisablehandler = filterActive;
+        $scope.searchdisablehandler = searchActive;
+    }
+
+    $scope.handleClickedMainButtons = function(event){
+
+
+
+        if(filterActive && !searchActive){
+            $scope.handlefilteractivation = "";
+            $scope.handlesearchactivation = "deactivatedbutton";
+            filterActive = false;
+            searchActive = true;
+        }else if(!filterActive && searchActive){
+            $scope.handlesearchactivation = "";
+            $scope.handlefilteractivation = "deactivatedbutton";
+            searchActive = false;
+            filterActive = true;
+        }
+
+        $scope.filterdisablehandler = filterActive;
+        $scope.searchdisablehandler = searchActive;
+
+    }
+
+})
 
 app.service('sharedScopeofContentData', function () {
     var myList = {};

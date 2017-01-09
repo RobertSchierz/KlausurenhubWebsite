@@ -147,6 +147,11 @@ body{
     margin-bottom: 10px;
 }
 
+.deactivatedbutton{
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
 #contentpanel {
     padding: 20px;
 }
@@ -209,9 +214,21 @@ body{
     margin-left: 30px;
 }
 
-.contentsingleview{
-    height: calc(95vh - 140px);
+#contentsingleviewsubheader{
+    font-size: 15px !important;
+    color: lightgrey;
+    margin-left: 10px;
+}
 
+.contentsingleview{
+    margin-top:50px;
+    margin-bottom: 50px;
+    height: calc(95vh - 240px);
+
+}
+
+#pdfpreview{
+height: 100%;
 }
 
 /* ANGULARJS ANIMATIONS */

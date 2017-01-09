@@ -1,13 +1,15 @@
 <div class="col-lg-12 col-md-12 col-xs-12 headerpanel texttoverticalmid" id="contentheader">
-    <i ng-click="back()" class="contentsingleviewback material-icons">backspace</i> <span id="contentsingleviewheader">{{clickedClause.clauseName}}</span>
+    <i ng-click="back()" class="contentsingleviewback material-icons">backspace</i>
+    <span id="contentsingleviewheader">{{clickedClause.clauseName}}
+        <span id="contentsingleviewsubheader"> | {{clickedClause.schoolName}} | {{clickedClause.courseName}}</span>
+    </span>
 </div>
 
 <div class="col-lg-12 col-md-12 col-xs-12 webpanel " id="content">
     <div class="row">
 
         <div class="col-lg-12 col-md-12 col-xs-12 contentsingleview ">
-            <iframe ng-src="{{getPdfUrl()}}"
-                    style="width:600px; height:500px;" frameborder="0"></iframe>
+            <iframe class="col-lg-12 col-md-12 col-xs-12" ng-src="{{getPdfUrl()}}"frameborder="0" id="pdfpreview"></iframe>
         </div>
 
         </div>

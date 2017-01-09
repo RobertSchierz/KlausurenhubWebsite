@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+
+
+
     <link rel="stylesheet" href="extern/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/filter.css">
@@ -16,10 +19,14 @@
 
     <script src="code/js/mainpage.js"></script>
     <script src="code/js/controller.js"></script>
+    <script src="code/js/facebooklogin.js"></script>
 
 
 </head>
 <body ng-app="app">
+
+
+
 <div class="container-fluid  headerpanel" id="header">
     <div class="row">
         <div class="col-lg-10 col-md-10 col-xs-10 pull-left">
@@ -29,8 +36,10 @@
         </div>
 
         <div class="col-lg-1 col-md-1 col-xs-1 pull-right ">
-            <p id="login" class="headertext">Login</p>
-        </div>
+
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+
+    </div>
 
     </div>
 </div>
@@ -39,13 +48,17 @@
     <div class="row">
 
         <div class="col-lg-3 col-md-3 col-xs-12" id="filterpanel">
-            <button type="button" class="col-lg-12 col-md-12 col-xs-12  texttomid mainbuttons" id="documentfilter">
+
+            <div ng-controller="mainbuttoncontroller" ng-init="initMainButtons()">
+
+            <button type="button" class="col-lg-12 col-md-12 col-xs-12  texttomid mainbuttons " ng-click="handleClickedMainButtons()" ng-disabled="filterdisablehandler" ng-class="handlefilteractivation" id="documentfilter">
                 Dokumentenfilter
             </button>
-            <button type="button" class="col-lg-12 col-md-12 col-xs-12  texttomid mainbuttons" id="documentsearch">
+            <button type="button" class="col-lg-12 col-md-12 col-xs-12  texttomid mainbuttons " ng-click="handleClickedMainButtons()" ng-disabled="searchdisablehandler" ng-class="handlesearchactivation"  id="documentsearch">
                 Dokumentensuche
             </button>
 
+            </div>
 
             <div class="col-lg-12 col-md-12 col-xs-12 " id="filter">
 
