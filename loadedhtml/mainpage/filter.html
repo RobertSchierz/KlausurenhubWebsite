@@ -15,6 +15,20 @@
 
         </div>
 
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
+
+            <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_teacher">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
+                    <span id="teacher_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableTeachers', 'teachers')" > {{teacherheader}} </span>
+                </button>
+                <ul class="dropdown-menu-filter dropdown-menu " id="teacher_list" role="menu">
+                    <li class="dropdown_listelement" ng-repeat="availableTeacher in availableTeachers "> <a ng-click="setFilterelementToDecision(availableTeacher, 'teacherheader', 'teacher')"> {{availableTeacher.teacherName}}</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
 
         <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
 
@@ -29,6 +43,63 @@
             </div>
 
         </div>
+
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
+
+        <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_subject">
+            <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
+                <span id="subject_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableSubjects', 'subjects')" > {{subjectheader}} </span>
+            </button>
+            <ul class="dropdown-menu-filter dropdown-menu " id="subject_list" role="menu">
+                <li class="dropdown_listelement" ng-repeat="availableSubject in availableSubjects "> <a ng-click="setFilterelementToDecision(availableSubject, 'subjectheader', 'subject')"> {{availableSubject.subjectName}}</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
+
+            <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_degree">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
+                    <span id="degree_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableDegrees', 'degrees')" > {{degreeheader}} </span>
+                </button>
+                <ul class="dropdown-menu-filter dropdown-menu " id="degree_list" role="menu">
+                    <li class="dropdown_listelement" ng-repeat="availableDegree in availableDegrees "> <a ng-click="setFilterelementToDecision(availableDegree, 'degreeheader', 'degree')"> {{availableDegree.degreeName}}</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
+
+            <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_semester">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
+                    <span id="semester_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableSemesters', 'semesters')" > {{semesterheader}} </span>
+                </button>
+                <ul class="dropdown-menu-filter dropdown-menu " id="semester_list" role="menu">
+                    <li class="dropdown_listelement" ng-repeat="availableSemester in availableSemesters "> <a ng-click="setFilterelementToDecision(availableSemester, 'semesterheader', 'semester')"> {{availableSemester.semesterName}}</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
+
+            <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_year">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
+                    <span id="year_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableYears', 'years')" > {{yearheader}} </span>
+                </button>
+                <ul class="dropdown-menu-filter dropdown-menu " id="year_list" role="menu">
+                    <li class="dropdown_listelement" ng-repeat="availableYear in availableYears "> <a ng-click="setFilterelementToDecision(availableYear, 'yearheader', 'year')"> {{availableYear.yearName}}</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
 
 
         <button class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" type="button" ng-click="resetFilter()" ng-class="handlesearchactivation" ng-disabled="searchdisablehandler"> Reset</button>

@@ -33,6 +33,7 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
         if (initTimer == 0) {
             $http.post('../php/getClauses.php').then(function (response) {
 
+
                 $rootScope.clauses = response.data;
 
 
@@ -61,7 +62,13 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
     $scope.setFilterStandardValues = function () {
         $scope.schoolheader = "Hochschulen";
+        $scope.teacherheader = "Lehrkraft";
         $scope.courseheader = "Studiengang";
+        $scope.subjectheader = "Modul";
+        $scope.degreeheader = "Grad";
+        $scope.semesterheader = "Semester";
+        $scope.yearheader = "Jahr";
+
     }
 
 
@@ -73,6 +80,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
         $http.post('../php/getAvailableOptions.php', requestData)
             .then(function (response) {
+
                 $scope[scopeVariableName] = response.data;
 
 
@@ -93,13 +101,25 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
     $scope.updateContent = function () {
 
 
-        var filterQuery = "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, clauses.schoolID, clauses.courseID " +
-            "FROM clauses " +
-            "LEFT JOIN courses " +
-            "ON clauses.courseID = courses.courseID " +
-            "LEFT JOIN schools " +
-            "ON clauses.schoolID = schools.schoolID " +
-            "WHERE ";
+        var filterQuery = " SELECT * " +
+            " FROM clauses " +
+            " LEFT JOIN courses " +
+            " ON clauses.courseID = courses.courseID " +
+            " LEFT JOIN schools " +
+            " ON clauses.schoolID = schools.schoolID " +
+            " LEFT JOIN degrees " +
+            " ON clauses.degreeID = degrees.degreeID" +
+            " LEFT JOIN semesters " +
+            " ON clauses.semesterID = semesters.semesterID " +
+            " LEFT JOIN subjects " +
+            " ON clauses.subjectID = subjects.subjectID" +
+            " LEFT JOIN teachers " +
+            " ON clauses.teacherID = teachers.teacherID" +
+            " LEFT JOIN years " +
+            " ON clauses.yearID = years.yearID" +
+            " WHERE ";
+
+        console.log(filter);
 
         for (var key in filter) {
             if (filter.hasOwnProperty(key) && filter[key] != null) {
@@ -108,7 +128,11 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
             }
         }
 
+
+
         filterQuery = filterQuery.slice(0, -4);
+
+        console.log(filterQuery);
 
         var requestData = {'query': filterQuery };
 
@@ -290,6 +314,7 @@ var searchController = app.controller('searchcontroller', function($scope, $http
 
         $http.post('../php/getSearchResult.php', requestData)
             .then(function (response) {
+                console.log(response.data);
                 contentscope.clauses = response.data;
 
 

@@ -6,12 +6,27 @@ require_once 'database_connections.php';
 
 
 // mysqli query to fetch all data from database
-$query = "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName
-          FROM clauses
-          LEFT JOIN courses
-          ON clauses.courseID = courses.courseID
-          LEFT JOIN schools
-          ON clauses.schoolID = schools.schoolID";
+$query =   "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, degreeName, semesterName, subjectName, teacherName, yearName
+                                       FROM `clauses`
+                                       LEFT JOIN courses
+                                       ON clauses.courseID = courses.courseID
+                                       LEFT JOIN schools
+                                       ON clauses.schoolID = schools.schoolID
+                                        LEFT JOIN degrees
+                                       ON clauses.degreeID = degrees.degreeID
+                                        LEFT JOIN semesters
+                                       ON clauses.semesterID = semesters.semesterID
+                                       LEFT JOIN subjects
+                                       ON clauses.subjectID = subjects.subjectID
+                                        LEFT JOIN teachers
+                                       ON clauses.teacherID = teachers.teacherID
+                                       LEFT JOIN years
+                                       ON clauses.yearID = years.yearID
+                                       ";
+
+
+
+
 
 $result = mysqli_query($con, $query);
 

@@ -5,14 +5,20 @@
 
 
 <div class="row"  data-ng-init="initContent()">
-    <div class="col-sm-2 col-md-2 col-xs-2 contentelement"   ng-repeat="clause in clauses ">
+    <div class="col-sm-2 col-md-2 col-xs-2 contentelement"   ng-repeat="clause in clauses track by $index ">
         <div class="thumbnail ">
 
             <div class="thumbnail innerthumbnail" ng-click="changeToContentView(clause)">
                 <i class="material-icons texttomid previewPDF" >picture_as_pdf</i>
             </div>
             <p class="texttomid contentheader">{{clause.clauseName}}</p>
-            <span class="contentsubtext texttomid">{{clause.Uploader}} | {{clause.courseName}} | {{clause.schoolName}}</span>
+            <span class="contentsubtext texttomid">
+                {{clause.schoolName}} | {{clause.courseName}}  </br>
+                 {{clause.degreeName}} | {{clause.semesterName}} | {{clause.subjectName}}  </br>
+                 {{clause.teacherName}} | {{clause.yearName}}
+
+
+            </span>
         </div>
     </div>
 </div>

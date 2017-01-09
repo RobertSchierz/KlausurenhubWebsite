@@ -11,13 +11,28 @@ $data = file_get_contents("php://input");
 $request = json_decode($data);
 
 // mysqli query to fetch all data from database
-$query = "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, clauses.schoolID, clauses.courseID
+$query = "SELECT *
           FROM `clauses`
           LEFT JOIN courses
           ON clauses.courseID = courses.courseID
           LEFT JOIN schools
           ON clauses.schoolID = schools.schoolID
-          WHERE `clauseName` like '%$request->searchvalue%' OR `Uploader` like '%$request->searchvalue%' OR `courseName` like '%$request->searchvalue%' OR `schoolName` like '%$request->searchvalue%'";
+          LEFT JOIN degrees
+          ON clauses.degreeID = degrees.degreeID
+          LEFT JOIN semesters
+          ON clauses.semesterID = semesters.semesterID
+          LEFT JOIN subjects
+          ON clauses.subjectID = subjects.subjectID
+          LEFT JOIN teachers
+          ON clauses.teacherID = teachers.teacherID
+          LEFT JOIN years
+          ON clauses.yearID = years.yearID
+
+          WHERE `clauseName` like '%$request->searchvalue%' OR `Uploader` like '%$request->searchvalue%'
+          OR `courseName` like '%$request->searchvalue%' OR `schoolName` like '%$request->searchvalue%'
+          OR `degreeName` like '%$request->searchvalue%' OR `semesterName` like '%$request->searchvalue%'
+          OR `subjectName` like '%$request->searchvalue%' OR `teacherName` like '%$request->searchvalue%'
+          OR `yearName` like '%$request->searchvalue%'";
 
 
 
