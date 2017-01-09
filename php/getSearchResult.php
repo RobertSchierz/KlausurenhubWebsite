@@ -28,7 +28,7 @@ $query = "SELECT *
           LEFT JOIN years
           ON clauses.yearID = years.yearID
 
-          WHERE `clauseName` like '%$request->searchvalue%' OR `Uploader` like '%$request->searchvalue%'
+          WHERE `clauseName` like '%$request->searchvalue%'
           OR `courseName` like '%$request->searchvalue%' OR `schoolName` like '%$request->searchvalue%'
           OR `degreeName` like '%$request->searchvalue%' OR `semesterName` like '%$request->searchvalue%'
           OR `subjectName` like '%$request->searchvalue%' OR `teacherName` like '%$request->searchvalue%'

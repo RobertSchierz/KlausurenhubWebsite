@@ -19,7 +19,7 @@
 
     <script src="code/js/mainpage.js"></script>
     <script src="code/js/controller.js"></script>
-    <script src="code/js/facebooklogin.js"></script>
+   <!-- <script src="code/js/facebooklogin.js"></script> -->
 
 
 </head>
@@ -35,9 +35,14 @@
             </a>
         </div>
 
-        <div class="col-lg-1 col-md-1 col-xs-1 pull-right ">
+        <div class="col-lg-1 col-md-1 col-xs-1 pull-right " ng-controller="logincontroller">
 
+            <p id="login" ng-click="changeViewToUpload()">Login</p>
+
+            <!--
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+
+            -->
 
     </div>
 

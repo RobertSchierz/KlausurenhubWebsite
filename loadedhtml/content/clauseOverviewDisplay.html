@@ -5,7 +5,7 @@
 
 
 <div class="row"  data-ng-init="initContent()">
-    <div class="col-sm-2 col-md-2 col-xs-2 contentelement"   ng-repeat="clause in clauses track by $index ">
+    <div class="col-sm-2 col-md-2 col-xs-2 contentelement animation"   ng-repeat="clause in clauses track by clause.clauseID ">
         <div class="thumbnail ">
 
             <div class="thumbnail innerthumbnail" ng-click="changeToContentView(clause)">

@@ -3,7 +3,14 @@
  */
 
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngAnimate']);
+
+/*
+angular.module('app').config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist(['**']);
+});
+
+*/
 
 var initTimer = 0;
 var filter = {};
@@ -12,10 +19,7 @@ var filterActive = true;
 var searchActive = false;
 
 function resetFilter() {
-    filter = {
-        schoolID: null,
-        courseID: null
-    };
+    filter = { };
 }
 
 resetFilter();
@@ -45,6 +49,7 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
     };
 
     $scope.getPdfUrl = function(){
+
         var contentscope = sharedScopeofFilterData.getList();
 
         return "http://www.klausurenhub.bplaced.net/" + contentscope.Path;
@@ -57,7 +62,7 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
 var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
 
-    sharedScopeofFilterData.addScope($scope);
+    sharedScopeofFilterData.addsearchScope($scope);
 
 
     $scope.setFilterStandardValues = function () {
@@ -170,8 +175,8 @@ var mainButtonController = app.controller('mainbuttoncontroller', function($scop
 
     $scope.handleClickedMainButtons = function(event){
 
-        var filterscope = sharedScopeofFilterData.getScope();
-        var searchscope = sharedScopeofSearchData.getScope();
+        var filterscope = sharedScopeofFilterData.getsearchScope();
+        var searchscope = sharedScopeofSearchData.getsearchScope();
 
 
         if(filterActive && !searchActive){
@@ -185,6 +190,7 @@ var mainButtonController = app.controller('mainbuttoncontroller', function($scop
             searchActive = true;
 
             searchscope.handleSearchbar(false);
+            filterscope.resetFilter();
 
         }else if(!filterActive && searchActive){
             $scope.handlesearchactivation = "";
@@ -211,20 +217,20 @@ var mainButtonController = app.controller('mainbuttoncontroller', function($scop
 })
 
 app.service('sharedScopeofSearchData', function () {
-    var sharescope = {};
+    var sharesearchscope = {};
 
 
-    var addscope = function (newObj) {
-        sharescope = newObj;
+    var addsearchscope = function (newObj) {
+        sharesearchscope = newObj;
     }
 
-    var getscope = function () {
-        return sharescope;
+    var getsearchscope = function () {
+        return sharesearchscope;
     }
 
     return {
-        addScope: addscope,
-        getScope: getscope
+        addsearchScope: addsearchscope,
+        getsearchScope: getsearchscope
     };
 });
 
@@ -268,8 +274,8 @@ app.service('sharedScopeofFilterData', function () {
     return {
         addList: addclause,
         getList: getclause,
-        addScope: addscope,
-        getScope: getscope
+        addsearchScope: addscope,
+        getsearchScope: getscope
     };
 });
 
@@ -290,7 +296,7 @@ app.directive('documentsearchbar', function(){
     }
 });
 
-var searchController = app.controller('searchcontroller', function($scope, $http, sharedScopeofSearchData, sharedScopeofContentData){
+var searchController = app.controller('searchcontroller', function($scope, $http, $rootScope, sharedScopeofSearchData, sharedScopeofContentData){
 
 
     $scope.hidesearchbar = true;
@@ -299,10 +305,10 @@ var searchController = app.controller('searchcontroller', function($scope, $http
         $scope.hidesearchbar = state;
 
         //Reset der Suche wenn Filterbutton betätigt wird
-        if(state){
+
             $scope.searchvalue = "";
             $scope.searchboxChanged();
-        }
+
 
     }
 
@@ -310,12 +316,13 @@ var searchController = app.controller('searchcontroller', function($scope, $http
 
         var requestData = {'searchvalue': $scope.searchvalue};
 
-        var contentscope = sharedScopeofContentData.getList();
+
+        //var contentscope = sharedScopeofContentData.getList();
 
         $http.post('../php/getSearchResult.php', requestData)
             .then(function (response) {
                 console.log(response.data);
-                contentscope.clauses = response.data;
+                $rootScope.clauses = response.data;
 
 
             })
@@ -324,7 +331,18 @@ var searchController = app.controller('searchcontroller', function($scope, $http
 
     }
 
-    sharedScopeofSearchData.addScope($scope);
+    sharedScopeofSearchData.addsearchScope($scope);
+});
+
+var loginController = app.controller('logincontroller', function($scope, sharedScopeofContentData){
+
+    $scope.changeViewToUpload = function(){
+
+        var contentscope = sharedScopeofContentData.getList();
+        contentscope.url = "../loadedhtml/content/uploadDisplay.html";
+
+    }
+
 });
 
 
