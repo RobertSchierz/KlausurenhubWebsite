@@ -5,20 +5,47 @@
 
 var app = angular.module('app', []);
 
+var initTimer = 0;
+
 var filter = {
     schoolID: null,
     courseID: null
 };
 
 
-var filterAppController = app.controller('filtercontroller',  function($scope, $http ) {
 
-    $scope.checkDisplay = true;
+
+var contentAppController = app.controller('contentcontroller', function($scope, $rootScope, $http, sharedScopeofContentData){
+
+    sharedScopeofContentData.addList($scope);
+
+    $scope.initContent = function(){
+
+
+            if(initTimer == 0){
+                $http.post('../php/getClauses.php').then(function(response){
+
+                    $rootScope.clauses = response.data;
+
+
+                });
+                initTimer += 1;
+            }
+
+
+    };
+})
+
+
+
+var filterAppController = app.controller('filtercontroller',  function($scope, $rootScope, $http, sharedScopeofContentData ) {
+
+
 
     $scope.schoolheader = "Hochschulen";
     $scope.courseheader = "Studiengang";
 
-    $scope.filter = filter;
+    filter;
 
     $scope.loadAvailableOptions = function(scopeVariableName, database){
 
@@ -35,8 +62,8 @@ var filterAppController = app.controller('filtercontroller',  function($scope, $
 
     $scope.setFilterelementToDecision = function(selectedItem, header, source){
         $scope[header] = selectedItem[source + "Name"];
-        $scope.filter[source + "ID"] = selectedItem[source + "ID"]
-        console.log($scope.filter);
+        filter[source + "ID"] = selectedItem[source + "ID"]
+
 
         $scope.updateContent();
 
@@ -70,66 +97,87 @@ var filterAppController = app.controller('filtercontroller',  function($scope, $
         $http.post('../php/getFilteredQuery.php', requestData)
             .then(function(response){
 
-                $scope.clauses = response.data;
+                $rootScope.clauses = response.data;
 
 
             })
     }
 
+    $scope.resetFilter = function(){
+        initTimer = 0;
+        var sharedscope = sharedScopeofContentData.getList();
 
-    $scope.initContent = function(){
-
-
-        $http.post('../php/getClauses.php').then(function(response){
-
-
-
-
-            $scope.clauses= response.data;
-
-
-
-        });
-
-
-    };
-
-
-    $scope.changeToContentView = function(clause){
-        $scope.checkDisplay = false;
-
+        sharedscope.url =  "../loadedhtml/content/clauseOverviewDisplay.html";
+        sharedscope.initContent();
 
     }
 
 
+
 });
 
-filterAppController.directive('contentdisplay', function(){
-    return{
-        restrict : "A",
-        templateUrl :  "../loadedhtml/content/clauseContentDisplay.html"
 
+app.service('sharedScopeofContentData', function() {
+    var myList = {};
+
+    var addList = function(newObj) {
+        myList= newObj;
+    }
+
+    var getList = function(){
+        return myList;
+    }
+
+    return {
+        addList: addList,
+        getList: getList
     };
 });
 
-filterAppController.directive('contentoverviewdisplay', function(){
-    return{
-        restrict : "A",
-        templateUrl :  "../loadedhtml/content/clauseOverviewDisplay.html"
 
 
-    };
-});
-
-
-
-
-
-filterAppController.directive('filterelements', function() {
+app.directive('filterelements', function() {
     return {
         templateUrl:  "../loadedhtml/mainpage/filter.html"
     };
 });
+
+
+app.directive('displaycontentoverview', function() {
+
+    function handleContent($scope, elem, attrs){
+
+        $scope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
+
+
+
+        $scope.back = function(){
+
+            $scope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
+
+        }
+
+        $scope.changeToContentView = function(clause){
+
+            $scope.clickedClause = clause;
+            $scope.url = "../loadedhtml/content/clauseContentDisplay.html";
+
+
+
+        }
+    }
+
+    return {
+        template: '<div ng-include="url"></div>',
+        link: handleContent
+
+
+
+
+    };
+});
+
+
 
 
 
