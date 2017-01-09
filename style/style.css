@@ -195,6 +195,29 @@ body{
     cursor:pointer !important;
 }
 
+.contentsingleviewback{
+    cursor: pointer;
+    color: #FF9900;
+}
+
+.contentsingleviewback:hover {
+
+    color:#ffa31a;
+}
+
+#contentsingleviewheader{
+    margin-left: 30px;
+}
+
+.contentsingleview{
+    height: calc(95vh - 140px);
+
+}
+
+/* ANGULARJS ANIMATIONS */
+
+
+
 
 @media (max-width: 720px) {
 
