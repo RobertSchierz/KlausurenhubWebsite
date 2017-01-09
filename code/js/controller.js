@@ -6,11 +6,11 @@
 var app = angular.module('app', ['ngAnimate']);
 
 /*
-angular.module('app').config(function($sceDelegateProvider) {
-    $sceDelegateProvider.resourceUrlWhitelist(['**']);
-});
+ angular.module('app').config(function($sceDelegateProvider) {
+ $sceDelegateProvider.resourceUrlWhitelist(['**']);
+ });
 
-*/
+ */
 
 var initTimer = 0;
 var filter = {};
@@ -30,7 +30,6 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
     sharedScopeofContentData.addList($scope);
 
 
-
     $scope.initContent = function () {
 
 
@@ -48,7 +47,7 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
     };
 
-    $scope.getPdfUrl = function(){
+    $scope.getPdfUrl = function () {
 
         var contentscope = sharedScopeofFilterData.getList();
 
@@ -134,7 +133,6 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
         }
 
 
-
         filterQuery = filterQuery.slice(0, -4);
 
         console.log(filterQuery);
@@ -163,23 +161,22 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
 });
 
-var mainButtonController = app.controller('mainbuttoncontroller', function($scope, sharedScopeofFilterData, sharedScopeofSearchData ){
+var mainButtonController = app.controller('mainbuttoncontroller', function ($scope, sharedScopeofFilterData, sharedScopeofSearchData) {
 
-    $scope.initMainButtons = function(){
+    $scope.initMainButtons = function () {
         $scope.handlefilteractivation = "deactivatedbutton";
         $scope.filterdisablehandler = filterActive;
         $scope.searchdisablehandler = searchActive;
     }
 
 
-
-    $scope.handleClickedMainButtons = function(event){
+    $scope.handleClickedMainButtons = function (event) {
 
         var filterscope = sharedScopeofFilterData.getsearchScope();
         var searchscope = sharedScopeofSearchData.getsearchScope();
 
 
-        if(filterActive && !searchActive){
+        if (filterActive && !searchActive) {
             $scope.handlefilteractivation = "";
             $scope.handlesearchactivation = "deactivatedbutton";
 
@@ -192,7 +189,7 @@ var mainButtonController = app.controller('mainbuttoncontroller', function($scop
             searchscope.handleSearchbar(false);
             filterscope.resetFilter();
 
-        }else if(!filterActive && searchActive){
+        } else if (!filterActive && searchActive) {
             $scope.handlesearchactivation = "";
             $scope.handlefilteractivation = "deactivatedbutton";
 
@@ -287,7 +284,7 @@ app.directive('filterelements', function () {
     };
 });
 
-app.directive('documentsearchbar', function(){
+app.directive('documentsearchbar', function () {
 
 
     return{
@@ -296,23 +293,23 @@ app.directive('documentsearchbar', function(){
     }
 });
 
-var searchController = app.controller('searchcontroller', function($scope, $http, $rootScope, sharedScopeofSearchData, sharedScopeofContentData){
+var searchController = app.controller('searchcontroller', function ($scope, $http, $rootScope, sharedScopeofSearchData, sharedScopeofContentData) {
 
 
     $scope.hidesearchbar = true;
 
-    $scope.handleSearchbar = function(state){
+    $scope.handleSearchbar = function (state) {
         $scope.hidesearchbar = state;
 
         //Reset der Suche wenn Filterbutton betätigt wird
 
-            $scope.searchvalue = "";
-            $scope.searchboxChanged();
+        $scope.searchvalue = "";
+        $scope.searchboxChanged();
 
 
     }
 
-    $scope.searchboxChanged = function(){
+    $scope.searchboxChanged = function () {
 
         var requestData = {'searchvalue': $scope.searchvalue};
 
@@ -328,15 +325,14 @@ var searchController = app.controller('searchcontroller', function($scope, $http
             })
 
 
-
     }
 
     sharedScopeofSearchData.addsearchScope($scope);
 });
 
-var loginController = app.controller('logincontroller', function($scope, sharedScopeofContentData){
+var loginController = app.controller('logincontroller', function ($scope, sharedScopeofContentData) {
 
-    $scope.changeViewToUpload = function(){
+    $scope.changeViewToUpload = function () {
 
         var contentscope = sharedScopeofContentData.getList();
         contentscope.url = "../loadedhtml/content/uploadDisplay.html";
@@ -376,11 +372,67 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 });
 
 
+/*---------------------EXPERIMENTAL----------------------------------*/
+
+app.directive("dropzone", function () {
+
+    function uploadHandler(scope, elem) {
 
 
 
+        scope.dropzonetext = "Datei hier ablegen";
+
+        elem.bind('dragover', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        });
+        elem.bind('dragenter', function (e) {
+            scope.dropzonetext = "Datei loslassen";
+
+            e.stopPropagation();
+            e.preventDefault();
+            scope.$apply(function () {
+                scope.divClass = 'on-drag-enter';
+            });
+        });
+        elem.bind('dragleave', function (e) {
+
+            e.stopPropagation();
+            e.preventDefault();
+            scope.$apply(function () {
+                scope.divClass = '';
+            });
+        });
+        elem.bind('drop', function (evt) {
+
+            evt.stopPropagation();
+            evt.preventDefault();
 
 
+            var files = evt.originalEvent.dataTransfer.files
+            for (var i = 0, f; f = files[i]; i++) {
+                var reader = new FileReader();
+                reader.readAsArrayBuffer(f);
+
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        var newFile = { name: theFile.name,
+                            type: theFile.type,
+                            size: theFile.size,
+                            lastModifiedDate: theFile.lastModifiedDate
+                        }
+                        console.log(newFile);
+                        //scope.addfile(newFile);
+                    };
+                })(f);
+            }
+        });
+    }
+    return {
+        restrict: "A",
+        link: uploadHandler
+    }
+})
 
 
 
