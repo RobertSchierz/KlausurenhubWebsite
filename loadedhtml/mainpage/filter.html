@@ -2,10 +2,10 @@
 
     <div class="row">
 
-        <div class="col-lg-12 col-md-12 col-xs-12 texttomid combobox_panel" >
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation" >
 
             <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_school">
-                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
                     <span id="school_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableSchools', 'schools')" > {{schoolheader}}    </span>
                 </button>
                 <ul class="dropdown-menu-filter dropdown-menu " id="school_list" role="menu" >
@@ -16,10 +16,10 @@
         </div>
 
 
-        <div class="col-lg-12 col-md-12 col-xs-12 texttomid combobox_panel">
+        <div class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" ng-class="handlesearchactivation">
 
             <div class="dropdown close dropdownmenu_common col-lg-12 col-md-12 col-xs-12 " id="filter_course">
-                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true">
+                <button class=" dropdown-toggle col-lg-12 col-md-12 col-xs-12" type="button"  data-toggle="dropdown"  aria-haspopup="true" ng-disabled="searchdisablehandler" >
                     <span id="course_selection" class="col-lg-12 col-md-12 col-xs-12 texttomid " data-ng-init="loadAvailableOptions('availableCourses', 'courses')" > {{courseheader}} </span>
                 </button>
                 <ul class="dropdown-menu-filter dropdown-menu " id="course_list" role="menu">
@@ -31,7 +31,7 @@
         </div>
 
 
-        <button class="col-lg-12 col-md-12 col-xs-12 texttomid combobox_panel" type="button" ng-click="resetFilter()"> Reset</button>
+        <button class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" type="button" ng-click="resetFilter()" ng-class="handlesearchactivation" ng-disabled="searchdisablehandler"> Reset</button>
 
         <!--
                 <div class="col-lg-12 col-md-12 col-xs-12">

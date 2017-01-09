@@ -22,10 +22,12 @@
 
 }
 
-.combobox_panel{
+.filterandsearch_panel {
     background-color: #FF9900;
     margin-top: 10px;
     height: 40px;
+    color: black;
+    text-align:center;
 
 }
 

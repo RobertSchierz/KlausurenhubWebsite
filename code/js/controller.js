@@ -25,6 +25,8 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
     sharedScopeofContentData.addList($scope);
 
+
+
     $scope.initContent = function () {
 
 
@@ -53,6 +55,8 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
 
 var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
+
+    sharedScopeofFilterData.addScope($scope);
 
 
     $scope.setFilterStandardValues = function () {
@@ -130,7 +134,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
 });
 
-var mainButtonController = app.controller('mainbuttoncontroller', function($scope){
+var mainButtonController = app.controller('mainbuttoncontroller', function($scope, sharedScopeofFilterData, sharedScopeofSearchData ){
 
     $scope.initMainButtons = function(){
         $scope.handlefilteractivation = "deactivatedbutton";
@@ -138,28 +142,67 @@ var mainButtonController = app.controller('mainbuttoncontroller', function($scop
         $scope.searchdisablehandler = searchActive;
     }
 
+
+
     $scope.handleClickedMainButtons = function(event){
 
+        var filterscope = sharedScopeofFilterData.getScope();
+        var searchscope = sharedScopeofSearchData.getScope();
 
 
         if(filterActive && !searchActive){
             $scope.handlefilteractivation = "";
             $scope.handlesearchactivation = "deactivatedbutton";
+
+
+            filterscope.handlesearchactivation = "deactivatedbutton";
+
             filterActive = false;
             searchActive = true;
+
+            searchscope.handleSearchbar(false);
+
         }else if(!filterActive && searchActive){
             $scope.handlesearchactivation = "";
             $scope.handlefilteractivation = "deactivatedbutton";
+
+            filterscope.handlesearchactivation = "";
+
             searchActive = false;
             filterActive = true;
+
+            searchscope.handleSearchbar(true);
+
+
         }
 
         $scope.filterdisablehandler = filterActive;
         $scope.searchdisablehandler = searchActive;
 
+        filterscope.searchdisablehandler = searchActive;
+
+
     }
 
 })
+
+app.service('sharedScopeofSearchData', function () {
+    var sharescope = {};
+
+
+    var addscope = function (newObj) {
+        sharescope = newObj;
+    }
+
+    var getscope = function () {
+        return sharescope;
+    }
+
+    return {
+        addScope: addscope,
+        getScope: getscope
+    };
+});
 
 app.service('sharedScopeofContentData', function () {
     var myList = {};
@@ -179,27 +222,84 @@ app.service('sharedScopeofContentData', function () {
 });
 
 app.service('sharedScopeofFilterData', function () {
-    var myList = {};
+    var shareclause = {};
+    var sharescope = {};
 
-    var addList = function (newObj) {
-        myList = newObj;
+    var addclause = function (newObj) {
+        shareclause = newObj;
     }
 
-    var getList = function () {
-        return myList;
+    var getclause = function () {
+        return shareclause;
+    }
+
+    var addscope = function (newObj) {
+        sharescope = newObj;
+    }
+
+    var getscope = function () {
+        return sharescope;
     }
 
     return {
-        addList: addList,
-        getList: getList
+        addList: addclause,
+        getList: getclause,
+        addScope: addscope,
+        getScope: getscope
     };
 });
 
 
 app.directive('filterelements', function () {
     return {
-        templateUrl: "../loadedhtml/mainpage/filter.html"
+        templateUrl: "../loadedhtml/mainpage/filter.html",
+        restrict: 'A'
     };
+});
+
+app.directive('documentsearchbar', function(){
+
+
+    return{
+        restrict: 'A',
+        templateUrl: "../loadedhtml/mainpage/search.html"
+    }
+});
+
+var searchController = app.controller('searchcontroller', function($scope, $http, sharedScopeofSearchData, sharedScopeofContentData){
+
+
+    $scope.hidesearchbar = true;
+
+    $scope.handleSearchbar = function(state){
+        $scope.hidesearchbar = state;
+
+        //Reset der Suche wenn Filterbutton betätigt wird
+        if(state){
+            $scope.searchvalue = "";
+            $scope.searchboxChanged();
+        }
+
+    }
+
+    $scope.searchboxChanged = function(){
+
+        var requestData = {'searchvalue': $scope.searchvalue};
+
+        var contentscope = sharedScopeofContentData.getList();
+
+        $http.post('../php/getSearchResult.php', requestData)
+            .then(function (response) {
+                contentscope.clauses = response.data;
+
+
+            })
+
+
+
+    }
+
+    sharedScopeofSearchData.addScope($scope);
 });
 
 
@@ -226,7 +326,8 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 
     return {
         template: '<div ng-include="url"></div>',
-        link: handleContent
+        link: handleContent,
+        restrict: 'A'
 
     };
 });
