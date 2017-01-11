@@ -1,35 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>JS File Upload with Progress</title>
 
-<body ng-app="myApp">
+</head>
+<body>
 
-<p><a href="#/">Main</a></p>
-<p><a href="#green">Green</a></p>
+    <p>
+        Select File: <input type='file' id='_file'> <input type='button' id='_submit' >
+    </p>
 
-
-
-
-<div ng-view>
-
-    <div style="width:200px; height:100px; background-color: green"></div>
-
-</div>
-
-<script>
-    var app = angular.module("myApp", ["ngRoute"]);
-    app.config(function($routeProvider) {
-        $routeProvider
-                .when("/", {
-                    templateUrl : "main.html"
-                })
-                .when("/green", {
-                    templateUrl : "green.html"
-                })
-
-    });
-</script>
-
+<script src='test.js'></script>
 </body>
 </html>

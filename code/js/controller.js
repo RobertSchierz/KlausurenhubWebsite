@@ -5,12 +5,11 @@
 
 var app = angular.module('app', ['ngAnimate']);
 
-/*
  angular.module('app').config(function($sceDelegateProvider) {
  $sceDelegateProvider.resourceUrlWhitelist(['**']);
  });
 
- */
+
 
 var initTimer = 0;
 var filter = {};
@@ -378,35 +377,47 @@ app.directive("dropzone", function () {
 
     function uploadHandler(scope, elem) {
 
+        var cachedFiles = [];
 
-
-        scope.dropzonetext = "Datei hier ablegen";
+        scope.dropzonetext = "Datei(en) hier ablegen";
 
         elem.bind('dragover', function (e) {
             e.stopPropagation();
             e.preventDefault();
+            scope.$apply(function () {
+                //scope.divClass = 'on-drag-enter';
+
+                scope.dropzonestyleparam = "dropzoneover";
+                if(e.originalEvent.dataTransfer.files.length > 1){
+                    scope.dropzonetext = "Dateien loslassen";
+                }else{
+                    scope.dropzonetext = "Datei loslassen";
+                }
+
+            });
         });
         elem.bind('dragenter', function (e) {
-            scope.dropzonetext = "Datei loslassen";
+
 
             e.stopPropagation();
             e.preventDefault();
-            scope.$apply(function () {
-                scope.divClass = 'on-drag-enter';
-            });
+
         });
         elem.bind('dragleave', function (e) {
 
             e.stopPropagation();
             e.preventDefault();
             scope.$apply(function () {
-                scope.divClass = '';
+                //scope.divClass = '';
+                scope.dropzonetext = "Datei(en) hier ablegen";
+
             });
         });
         elem.bind('drop', function (evt) {
 
             evt.stopPropagation();
             evt.preventDefault();
+
 
 
             var files = evt.originalEvent.dataTransfer.files
@@ -416,21 +427,92 @@ app.directive("dropzone", function () {
 
                 reader.onload = (function (theFile) {
                     return function (e) {
-                        var newFile = { name: theFile.name,
-                            type: theFile.type,
-                            size: theFile.size,
-                            lastModifiedDate: theFile.lastModifiedDate
+
+                        console.log(theFile);
+                        cacheFiles(theFile);
+
+                        if(i == files.length){
+                            upload();
                         }
-                        console.log(newFile);
-                        //scope.addfile(newFile);
+
                     };
+
                 })(f);
+
             }
+
+
+
+            scope.$apply(function () {
+                setTextUploader(evt);
+                scope.dropzonestyleparam = "dropzonesuccess";
+            });
+
+
+
+
         });
+
+        function cacheFiles(file){
+
+            cachedFiles.push(file);
+        }
+
+        function upload(){
+            var fData = new FormData();
+            for(var i in cachedFiles){
+                fData.append('uploadedfile', cachedFiles[i]);
+            }
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    try {
+                        var resp = JSON.parse(xhr.response);
+                    } catch (e){
+                        var resp = {
+                            status: 'error',
+                            data: 'Unknown error occurred: [' + xhr.responseText + ']'
+                        };
+                    }
+                    console.log(resp.status + ': ' + resp.data);
+                }
+            };
+
+            //xhr.upload.addEventListener("progress", uploadProgress, false)
+           // xhr.addEventListener("load", uploadComplete, false)
+           // xhr.addEventListener("error", uploadFailed, false)
+           // xhr.addEventListener("abort", uploadCanceled, false)
+            xhr.open("POST", "../php/uploadFile.php");
+
+            xhr.send(fData);
+
+        }
+
+        var setTextUploader = function(evt){
+            if(evt.originalEvent.dataTransfer.files.length > 1){
+                scope.dropzonetext = "Dateien hinzugefügt";
+            }else{
+                scope.dropzonetext = "Datei hinzugefügt";
+            }
+
+            window.setTimeout(function(){
+                scope.$apply(function () {
+                    scope.dropzonetext ="Datei(en) hier ablegen";
+                    scope.dropzonestyleparam = "dropzonedefault";
+                });
+
+            }, 2000);
+        }
+
+
     }
+
+
     return {
         restrict: "A",
-        link: uploadHandler
+        link: uploadHandler,
+        templateUrl: "../loadedhtml/content/uploadDropzone.html"
     }
 })
 

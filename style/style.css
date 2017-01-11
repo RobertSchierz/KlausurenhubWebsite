@@ -76,6 +76,7 @@ body{
 }
 
 #main {
+    min-height: 700px;
     /*  height: calc(100vh - 100px);*/
     /*padding: 50px;*/
 }
@@ -91,7 +92,7 @@ body{
 #filterdocuments {
     height: calc((90vh - 160px) / 2 + 100px);
     padding: 0px !important;
-   /* min-height: 200px;*/
+    min-height: 450px;
 }
 
 #filtersearch {
@@ -103,6 +104,7 @@ body{
 
     height: calc(((90vh - 160px) / 2) - 30px + 100px);
     padding: 5px;
+    min-height: 450px;
 
 }
 
@@ -135,6 +137,7 @@ body{
 
 #filterpanel {
     padding: 20px;
+    min-height: 650px;
 }
 
 #documentsearch {
@@ -261,7 +264,7 @@ height: 100%;
 
 /*////////////////////////////////////////////////////////////*/
 
-div[dropzone] {
+#dropzone {
     margin-top:20px;
     border: 2px dashed #bbb;
     border-radius: 5px;
@@ -271,6 +274,28 @@ div[dropzone] {
     color: #bbb;
     margin-bottom: 20px;
     min-height: 300px;
+}
+
+.dropzonesuccess {
+    border-color: #FF9900 !important;
+}
+
+.dropzoneover {
+    border-color: #7F5C26 !important;
+}
+
+.dropzonedefault {
+    border-color: #bbb !important;
+}
+
+#droppedzone{
+    margin-top:20px;
+    border: 2px dashed #bbb;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 20pt;
+    margin-bottom: 20px;
+    min-height: 50px;
 }
 
 
