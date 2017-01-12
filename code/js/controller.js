@@ -5,10 +5,9 @@
 
 var app = angular.module('app', ['ngAnimate']);
 
- angular.module('app').config(function($sceDelegateProvider) {
- $sceDelegateProvider.resourceUrlWhitelist(['**']);
- });
-
+angular.module('app').config(function ($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist(['**']);
+});
 
 
 var initTimer = 0;
@@ -50,7 +49,37 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
         var contentscope = sharedScopeofFilterData.getList();
 
-        return "http://www.klausurenhub.bplaced.net/" + contentscope.Path;
+        return "http://klausurenhub.bplaced.net/" + contentscope.Path;
+
+    }
+
+    $scope.setThumbnail = function (clauseID, clausePath) {
+        PDFJS.disableWorker = true;
+        console.log("http://www.klausurenhub.bplaced.net/" + clausePath + "");
+        PDFJS.getDocument("http://www.klausurenhub.bplaced.net/" + clausePath + "").then(function getPdfHelloWorld(pdf) {
+
+
+            console.log(clauseID);
+
+
+            pdf.getPage(1).then(function getPageHelloWorld(page) {
+                var scale = 0.2;
+                var viewport = page.getViewport(scale);
+
+                //
+                // Prepare canvas using PDF page dimensions
+                //
+                var canvas = document.getElementById(clauseID);
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                //
+                // Render PDF page into canvas context
+                //
+                page.render({canvasContext: context, viewport: viewport});
+            });
+        });
 
     }
 
@@ -388,9 +417,9 @@ app.directive("dropzone", function () {
                 //scope.divClass = 'on-drag-enter';
 
                 scope.dropzonestyleparam = "dropzoneover";
-                if(e.originalEvent.dataTransfer.files.length > 1){
+                if (e.originalEvent.dataTransfer.files.length > 1) {
                     scope.dropzonetext = "Dateien loslassen";
-                }else{
+                } else {
                     scope.dropzonetext = "Datei loslassen";
                 }
 
@@ -419,7 +448,6 @@ app.directive("dropzone", function () {
             evt.preventDefault();
 
 
-
             var files = evt.originalEvent.dataTransfer.files
             for (var i = 0, f; f = files[i]; i++) {
                 var reader = new FileReader();
@@ -428,81 +456,188 @@ app.directive("dropzone", function () {
                 reader.onload = (function (theFile) {
                     return function (e) {
 
-                        console.log(theFile);
-                        cacheFiles(theFile);
+                        cacheFiles(theFile, evt);
 
-                        if(i == files.length){
-                            upload();
+                        if (cachedFiles.length == files.length) {
+                            storeFilesinDroppedZone(cachedFiles);
                         }
+
+
+                        /*  if(i == files.length){
+                         upload(evt);
+                         }*/
 
                     };
 
                 })(f);
-
-            }
-
-
-
-            scope.$apply(function () {
                 setTextUploader(evt);
-                scope.dropzonestyleparam = "dropzonesuccess";
-            });
-
-
+            }
 
 
         });
 
-        function cacheFiles(file){
-
-            cachedFiles.push(file);
+        function checkIfIsPdf(filename) {
+            var ext = getExtension(filename);
+            switch (ext.toLowerCase()) {
+                case 'pdf':
+                    return true;
+            }
+            return false;
         }
 
-        function upload(){
+        function getExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
+        }
+
+       scope.deleteattachedfile = function(uploadedfile){
+
+
+            for(var i = 0; i < cachedFiles.length; i++ ){
+                if(cachedFiles[i].name == uploadedfile.name){
+
+                 cachedFiles.splice(i, 1);
+                }
+            }
+
+       }
+
+        var setTextUploader = function (evt) {
+            if (evt.originalEvent.dataTransfer.files.length > 1) {
+                scope.dropzonetext = "Dateien hinzugefügt";
+            } else {
+                scope.dropzonetext = "Datei hinzugefügt";
+            }
+            window.setTimeout(function () {
+                scope.$apply(function () {
+                    scope.dropzonetext = "Datei(en) hier ablegen";
+                    scope.dropzonestyleparam = "dropzonedefault";
+                });
+            }, 2000);
+        };
+
+        function storeFilesinDroppedZone(cachedFiles) {
+
+            scope.$apply(function () {
+                scope.uploadedfiles = cachedFiles;
+            })
+
+        }
+
+        function cacheFiles(file, evt) {
+            if(checkIfIsPdf(file.name)){
+                cachedFiles.push(file);
+            }else{
+
+                //Nur vorrübergehend muss redundanzfrei gelöst werden
+                scope.$apply(function () {
+                    scope.dropzonetext = file.name + " ist keine .pdf!";
+                    scope.dropzonestyleparam = "dropzoneerror";
+
+                });
+
+                window.setTimeout(function () {
+                    scope.$apply(function () {
+                        scope.dropzonetext = "Datei(en) hier ablegen";
+                        scope.dropzonestyleparam = "dropzonedefault";
+                    });
+
+                }, 3000);
+
+
+            }
+
+
+        }
+
+        function upload(evt) {
+
             var fData = new FormData();
-            for(var i in cachedFiles){
+            for (var i in cachedFiles) {
                 fData.append('uploadedfile', cachedFiles[i]);
             }
             var xhr = new XMLHttpRequest();
 
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState == 4){
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
                     try {
                         var resp = JSON.parse(xhr.response);
-                    } catch (e){
+                    } catch (e) {
                         var resp = {
                             status: 'error',
                             data: 'Unknown error occurred: [' + xhr.responseText + ']'
                         };
                     }
-                    console.log(resp.status + ': ' + resp.data);
+                    showError(resp, evt);
                 }
             };
 
             //xhr.upload.addEventListener("progress", uploadProgress, false)
-           // xhr.addEventListener("load", uploadComplete, false)
-           // xhr.addEventListener("error", uploadFailed, false)
-           // xhr.addEventListener("abort", uploadCanceled, false)
+            // xhr.addEventListener("load", uploadComplete, false)
+            // xhr.addEventListener("error", uploadFailed, false)
+            // xhr.addEventListener("abort", uploadCanceled, false)
             xhr.open("POST", "../php/uploadFile.php");
 
             xhr.send(fData);
 
         }
 
-        var setTextUploader = function(evt){
-            if(evt.originalEvent.dataTransfer.files.length > 1){
-                scope.dropzonetext = "Dateien hinzugefügt";
-            }else{
-                scope.dropzonetext = "Datei hinzugefügt";
+
+        var showError = function (resp, evt) {
+
+            var pluralhelper = "";
+            var success = false;
+
+            if (evt.originalEvent.dataTransfer.files.length > 1) {
+                var pluralhelper = "en";
+            } else {
+                var pluralhelper = "";
             }
 
-            window.setTimeout(function(){
+            var statustext = "";
+            switch (resp.data) {
+                case '1':
+                    statustext = "Fehler während des Uploads!";
+                    break;
+                case '2':
+                    statustext = "Bitte ausschließlich .pdf Dateien hochladen!";
+                    break;
+                case '3':
+                    statustext = "Maximalgröße von 50MB überschritten!";
+                    break;
+                case '4':
+                    statustext = "Datei existierts serverseitig bereits!";
+                    break;
+                case '5':
+                    statustext = "Datei" + pluralhelper + " erfolgreich hochgeladen";
+                    success = true;
+                    break;
+                default:
+                    statustext = "Unbekannter Fehler";
+                    break;
+
+            }
+
+            scope.$apply(function () {
+                scope.dropzonetext = statustext;
+                console.log(statustext);
+                if (success) {
+                    scope.dropzonestyleparam = "dropzonesuccess";
+                } else {
+                    scope.dropzonestyleparam = "dropzoneerror";
+                }
+
+            });
+
+            window.setTimeout(function () {
                 scope.$apply(function () {
-                    scope.dropzonetext ="Datei(en) hier ablegen";
+                    scope.dropzonetext = "Datei(en) hier ablegen";
                     scope.dropzonestyleparam = "dropzonedefault";
                 });
 
-            }, 2000);
+            }, 3000);
+
+
         }
 
 

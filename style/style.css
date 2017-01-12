@@ -189,25 +189,32 @@ body{
 }
 
 .contentheader{
-    color:black !important;
+    color: #FF9900 !important;
     font-size: 20px;
 }
 
 .contentelement{
     margin: 22px !important;
-    padding: 0px !important;
+    padding: 10px !important;
     min-width: 130px;
+    border: solid 2px #1B1B1B;
+    height: 250px;
+
+
+}
+
+.contentsubtext span{
+    color: #FF9900 !important;
+    font-size:12px;
+    align-items: center !important;
+    justify-content: center !important;
 
 }
 
 .contentsubtext{
-    color: black !important;
-    font-size:10px;
+    text-align: center !important;
 }
 
-.innerthumbnail{
-    cursor:pointer !important;
-}
 
 .contentsingleviewback{
     cursor: pointer;
@@ -273,29 +280,97 @@ height: 100%;
     font: 20pt bold;
     color: #bbb;
     margin-bottom: 20px;
-    min-height: 300px;
+    min-height: 150px;
 }
 
 .dropzonesuccess {
-    border-color: #FF9900 !important;
+    border-color: green !important;
 }
 
 .dropzoneover {
-    border-color: #7F5C26 !important;
+    border-color: #FF9900 !important;
 }
 
 .dropzonedefault {
     border-color: #bbb !important;
 }
 
+.dropzoneerror{
+    border-color: red !important;
+}
+
 #droppedzone{
     margin-top:20px;
+    margin-bottom: 20px;
     border: 2px dashed #bbb;
     border-radius: 5px;
     padding: 15px;
-    font-size: 20pt;
-    margin-bottom: 20px;
     min-height: 50px;
+    float:left;
+    width:100%;
+}
+
+
+.thumbnailcanvas{
+    cursor: pointer !important;
+    height: 120px;
+}
+
+.thumbnail{
+    height: 230px;
+}
+
+.contenttext{
+    margin-top: 10px;
+    height: 50px;
+}
+
+#uploadbutton{
+    height: 60px !important;
+    background-color: #FF9900 !important;
+    border: none;
+    font-size: 30px !important;
+    color: #000000 !important;
+
+}
+
+.attachedfile{
+
+    background-color: #FF9900;
+    float:left;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    border-radius: 80px;
+
+    -webkit-box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
+    -moz-box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
+    box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
+}
+
+.attachedfilename{
+    color: #000000 !important;
+    margin-left: 5px;
+    vertical-align: -moz-middle-with-baseline;
+}
+
+.attachedfileicon{
+    color: #000000 !important;
+    vertical-align: -moz-middle-with-baseline;
+}
+
+.attachedfileicondelete{
+    margin-left: 5px;
+}
+
+.attachedfileicondelete:hover{
+    cursor: pointer;
+    color: #2B180C !important;
 }
 
 

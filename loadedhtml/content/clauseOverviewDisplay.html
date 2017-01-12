@@ -1,27 +1,38 @@
 <div class="col-lg-12 col-md-12 col-xs-12 headerpanel texttoverticalmid" id="contentheader">Altklausurenübersicht</div>
-<div class="col-lg-12 col-md-12 col-xs-12 webpanel "  id="content"   >
+<div class="col-lg-12 col-md-12 col-xs-12 webpanel " id="content">
+
+
+    <div class="row" data-ng-init="initContent()">
+        <div class="col-sm-2 col-md-2 col-xs-2 contentelement animation"
+             ng-repeat="clause in clauses track by clause.clauseID ">
+            <div data-ng-init="setThumbnail(clause.clauseID, clause.Path)">
 
 
 
+                    <div class="row">
+                        <canvas ng-click="changeToContentView(clause)" ng-attr-id="{{ clause.clauseID }}" class="col-sm-12 col-md-12 col-xs-12 thumbnailcanvas"></canvas>
+                    </div>
 
-<div class="row"  data-ng-init="initContent()">
-    <div class="col-sm-2 col-md-2 col-xs-2 contentelement animation"   ng-repeat="clause in clauses track by clause.clauseID ">
-        <div class="thumbnail ">
+                    <div class="row contenttext">
+                        <p class=" col-sm-12 col-md-12 col-xs-12 texttomid contentheader">{{clause.clauseName}}</p>
+                        <span class=" col-sm-12 col-md-12 col-xs-12 contentsubtext">
+                            <span>| {{clause.schoolName}} </span>
+                            <span>| {{clause.courseName}} </span>
+                            <span>| {{clause.degreeName}} </span>
+                            <span>| {{clause.subjectName}} </span>
+                            <span>| {{clause.semesterName}} </span>
+                            <span>| {{clause.teacherName}} </span>
+                            <span>| {{clause.yearName}} </span>
 
-            <div class="thumbnail innerthumbnail" ng-click="changeToContentView(clause)">
-                <i class="material-icons texttomid previewPDF" >picture_as_pdf</i>
+                        </span>
+
+                    </div>
+
+
+
             </div>
-            <p class="texttomid contentheader">{{clause.clauseName}}</p>
-            <span class="contentsubtext texttomid">
-                {{clause.schoolName}} | {{clause.courseName}}  </br>
-                 {{clause.degreeName}} | {{clause.semesterName}} | {{clause.subjectName}}  </br>
-                 {{clause.teacherName}} | {{clause.yearName}}
-
-
-            </span>
         </div>
     </div>
-</div>
 </div>
 
 

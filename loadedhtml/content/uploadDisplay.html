@@ -4,12 +4,45 @@
 </div>
 
 <div class="col-lg-12 col-md-12 col-xs-12 webpanel " id="content">
+
     <div class="row">
 
         <div class="col-lg-1 col-md-1 col-xs-1"></div>
         <div class="col-lg-10 col-md-10 col-xs-10" dropzone></div>
-        <div class="col-lg-10 col-md-10 col-xs-10" id="droppedzone">fgdfgd</div>
         <div class="col-lg-1 col-md-1 col-xs-1"></div>
 
     </div>
+
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="col-lg-10 col-md-10 col-xs-10">
+            <div id="droppedzone" >
+
+                <div class="animation" ng-repeat="uploadedfile in uploadedfiles">
+                   <div class=" attachedfile ">
+                       <i class="material-icons attachedfileicon">attach_file</i>
+                       <span texttoverticalmid class="attachedfilename">{{uploadedfile.name}}</span>
+                       <i class="material-icons attachedfileicon attachedfileicondelete " ng-click="deleteattachedfile(uploadedfile)" >delete_forever</i>
+                   </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="col-lg-10 col-md-10 col-xs-10">
+            <button class="col-lg-12 col-md-12 col-xs-12" id="uploadbutton">Upload</button>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+    </div>
+
+
+
 </div>
