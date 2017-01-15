@@ -508,8 +508,13 @@ app.directive("dropzone", function () {
                 }
             }
 
+           if(uploadedfile == scope.editfile){
+               scope.showeditor = false;
+           }
+
            if(cachedFiles.length == 0){
                scope.disableupload = true;
+               scope.showeditor = false;
            }
 
        }

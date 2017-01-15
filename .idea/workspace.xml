@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/code/js/controller.js" line="701" />
+    <bookmark url="file://$PROJECT_DIR$/code/js/controller.js" line="706" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46b28ec1-f0f6-47c1-8ea0-a202d4fb0014" name="Default" comment="" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/js/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5895349" vertical-offset="8180" max-vertical-offset="15079">
-              <caret line="511" column="42" selection-start-line="511" selection-start-column="42" selection-end-line="511" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.6883721" vertical-offset="8180" max-vertical-offset="15164">
+              <caret line="516" column="40" selection-start-line="516" selection-start-column="40" selection-end-line="516" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/loadedhtml/content/uploadDisplay.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.923077" vertical-offset="193" max-vertical-offset="1139">
-              <caret line="25" column="118" selection-start-line="25" selection-start-column="118" selection-end-line="25" selection-end-column="118" />
+              <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
               <folding />
             </state>
           </provider>
@@ -896,15 +896,15 @@
     <entry file="file://$PROJECT_DIR$/loadedhtml/content/uploadDisplay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.923077" vertical-offset="193" max-vertical-offset="1139">
-          <caret line="25" column="118" selection-start-line="25" selection-start-column="118" selection-end-line="25" selection-end-column="118" />
+          <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/js/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5895349" vertical-offset="8180" max-vertical-offset="15079">
-          <caret line="511" column="42" selection-start-line="511" selection-start-column="42" selection-end-line="511" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.6883721" vertical-offset="8180" max-vertical-offset="15164">
+          <caret line="516" column="40" selection-start-line="516" selection-start-column="40" selection-end-line="516" selection-end-column="40" />
           <folding />
         </state>
       </provider>
