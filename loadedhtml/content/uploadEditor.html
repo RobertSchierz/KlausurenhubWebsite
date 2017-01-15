@@ -1,0 +1,55 @@
+<div class="col-lg-12 col-md-12 col-xs-12 uploadeditor" ng-show="showeditor">
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editorschoolHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableSchool in availableSchools "><a class="texttomid" ng-click="setFilterelementToDecision(availableSchool, 'editorschoolHeader', 'school')">{{availableSchool.schoolName}}</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editorteacherHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableTeacher in availableTeachers "><a class="texttomid" ng-click="setFilterelementToDecision(availableTeacher, 'editorteacherHeader', 'teacher')">{{availableTeacher.teacherName}}</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editorcourseHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableCourse in availableCourses "><a class="texttomid" ng-click="setFilterelementToDecision(availableCourse, 'editorcourseHeader', 'course')">{{availableCourse.courseName}}</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editorsubjectHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableSubject in availableSubjects "><a class="texttomid" ng-click="setFilterelementToDecision(availableSubject, 'editorsubjectHeader', 'subject')">{{availableSubject.subjectName}}</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editordegreeHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableDegree in availableDegrees "><a class="texttomid" ng-click="setFilterelementToDecision(availableDegree, 'editordegreeHeader', 'degree')">{{availableDegree.degreeName}}</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editorsemesterHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableSemester in availableSemesters "><a class="texttomid" ng-click="setFilterelementToDecision(availableSemester, 'editorsemesterHeader', 'semester')">{{availableSemester.semesterName}}</a></li>
+        </ul>
+    </div>
+
+
+    <div class="dropdown close dropdownmenu_common uploadeditorbuttons">
+        <button class="dropdown-toggle " type="button"  data-toggle="dropdown" aria-haspopup="true" >{{editoryearHeader}}</button>
+        <ul class="dropdown-menu uploadeditorlists" role="menu">
+            <li ng-repeat="availableYear in availableYears "><a class="texttomid" ng-click="setFilterelementToDecision(availableYear, 'editoryearHeader', 'year')">{{availableYear.yearName}}</a></li>
+        </ul>
+    </div>
+
+
+</div>
+

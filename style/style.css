@@ -38,6 +38,16 @@ body{
     background-color: #ffa31a;
 }
 
+.noselect {
+    -webkit-touch-callout: none !important; /* iOS Safari */
+    -webkit-user-select: none !important; /* Chrome/Safari/Opera */
+    -khtml-user-select: none !important; /* Konqueror */
+    -moz-user-select: none !important; /* Firefox */
+    -ms-user-select: none !important; /* Internet Explorer/Edge */
+    user-select: none !important; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 /*Spezifische Attribute*/
 
 .headertext {
@@ -331,7 +341,11 @@ height: 100%;
     border: none;
     font-size: 30px !important;
     color: #000000 !important;
+}
 
+.uploaddeactivated{
+opacity: 0.5 !important;
+    cursor: not-allowed !important;
 }
 
 .attachedfile{
@@ -343,6 +357,8 @@ height: 100%;
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     -webkit-border-radius: 80px;
     -moz-border-radius: 80px;
@@ -351,7 +367,13 @@ height: 100%;
     -webkit-box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
     -moz-box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
     box-shadow: inset 0px 0px 13px 0px rgba(0,0,0,1);
+    opacity: 0.5;
 }
+
+.attachedfile:hover {
+cursor: pointer;
+}
+
 
 .attachedfilename{
     color: #000000 !important;
@@ -372,6 +394,53 @@ height: 100%;
     cursor: pointer;
     color: #2B180C !important;
 }
+
+.uploadeditor{
+    float:left;
+    margin-bottom: 20px;
+    border: 2px dashed #bbb;
+    border-radius: 5px;
+}
+
+.selectedfile{
+    opacity: 1;
+}
+
+.uploadeditorbuttons{
+    color: black !important;
+    background-color: #FF9900;
+    border: none;
+    font-size: 20px;
+    float: left !important;
+    margin: 10px;
+
+}
+
+.uploadeditorlists{
+    background-color: #FF9900;
+    color: black !important;
+    font-size: 16px;
+
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.8);
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.8);
+}
+
+.uploadeditorlists > li > a{
+    font-weight: bold;
+    color: black !important;
+    text-shadow: none !important;
+}
+
+.alldecisionsfilled{
+    display: inline !important;
+}
+
+.notalldecisionsfilled{
+    display: none !important;
+}
+
+
 
 
 

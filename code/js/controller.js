@@ -59,9 +59,6 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
         PDFJS.getDocument("http://www.klausurenhub.bplaced.net/" + clausePath + "").then(function getPdfHelloWorld(pdf) {
 
 
-            console.log(clauseID);
-
-
             pdf.getPage(1).then(function getPageHelloWorld(page) {
                 var scale = 0.2;
                 var viewport = page.getViewport(scale);
@@ -122,7 +119,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
     $scope.setFilterelementToDecision = function (selectedItem, header, source) {
         $scope[header] = selectedItem[source + "Name"];
-        filter[source + "ID"] = selectedItem[source + "ID"]
+        filter[source + "ID"] = selectedItem[source + "ID"];
 
 
         $scope.updateContent();
@@ -367,6 +364,9 @@ var loginController = app.controller('logincontroller', function ($scope, shared
 
     }
 
+
+
+
 });
 
 
@@ -400,13 +400,16 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 });
 
 
-/*---------------------EXPERIMENTAL----------------------------------*/
 
 app.directive("dropzone", function () {
 
     function uploadHandler(scope, elem) {
 
+
         var cachedFiles = [];
+
+        scope.disableupload = true;
+
 
         scope.dropzonetext = "Datei(en) hier ablegen";
 
@@ -447,6 +450,8 @@ app.directive("dropzone", function () {
             evt.stopPropagation();
             evt.preventDefault();
 
+            scope.disableupload = true;
+
 
             var files = evt.originalEvent.dataTransfer.files
             for (var i = 0, f; f = files[i]; i++) {
@@ -485,6 +490,7 @@ app.directive("dropzone", function () {
             return false;
         }
 
+
         function getExtension(filename) {
             var parts = filename.split('.');
             return parts[parts.length - 1];
@@ -494,11 +500,17 @@ app.directive("dropzone", function () {
 
 
             for(var i = 0; i < cachedFiles.length; i++ ){
-                if(cachedFiles[i].name == uploadedfile.name){
+                if(cachedFiles[i].$$hashKey == uploadedfile.$$hashKey){
 
                  cachedFiles.splice(i, 1);
+
+
                 }
             }
+
+           if(cachedFiles.length == 0){
+               scope.disableupload = true;
+           }
 
        }
 
@@ -520,31 +532,18 @@ app.directive("dropzone", function () {
 
             scope.$apply(function () {
                 scope.uploadedfiles = cachedFiles;
+
             })
+
+
 
         }
 
         function cacheFiles(file, evt) {
-            if(checkIfIsPdf(file.name)){
-                cachedFiles.push(file);
+            if(!checkIfIsPdf(file.name)){
+                handleDropzoneText(file.name + " ist keine .pdf!", "dropzoneerror" );
             }else{
-
-                //Nur vorrübergehend muss redundanzfrei gelöst werden
-                scope.$apply(function () {
-                    scope.dropzonetext = file.name + " ist keine .pdf!";
-                    scope.dropzonestyleparam = "dropzoneerror";
-
-                });
-
-                window.setTimeout(function () {
-                    scope.$apply(function () {
-                        scope.dropzonetext = "Datei(en) hier ablegen";
-                        scope.dropzonestyleparam = "dropzonedefault";
-                    });
-
-                }, 3000);
-
-
+                cachedFiles.push(file);
             }
 
 
@@ -580,6 +579,25 @@ app.directive("dropzone", function () {
 
             xhr.send(fData);
 
+        }
+
+        var handleDropzoneText = function(text, statusclass){
+
+
+            scope.$apply(function () {
+                scope.dropzonetext = text;
+                scope.dropzonestyleparam = statusclass;
+
+            });
+
+
+            window.setTimeout(function () {
+                scope.$apply(function () {
+                    scope.dropzonetext = "Datei(en) hier ablegen";
+                    scope.dropzonestyleparam = "dropzonedefault";
+                });
+
+            }, 3000);
         }
 
 
@@ -619,26 +637,25 @@ app.directive("dropzone", function () {
             }
 
             scope.$apply(function () {
-                scope.dropzonetext = statustext;
-                console.log(statustext);
+
+                var statusclasstemp;
+
                 if (success) {
-                    scope.dropzonestyleparam = "dropzonesuccess";
+                    statusclasstemp = "dropzonesuccess";
                 } else {
-                    scope.dropzonestyleparam = "dropzoneerror";
+                    statusclasstemp = "dropzoneerror";
                 }
+
+                handleDropzoneText(statustext, statusclasstemp );
 
             });
 
-            window.setTimeout(function () {
-                scope.$apply(function () {
-                    scope.dropzonetext = "Datei(en) hier ablegen";
-                    scope.dropzonestyleparam = "dropzonedefault";
-                });
 
-            }, 3000);
 
 
         }
+
+
 
 
     }
@@ -648,6 +665,212 @@ app.directive("dropzone", function () {
         restrict: "A",
         link: uploadHandler,
         templateUrl: "../loadedhtml/content/uploadDropzone.html"
+    }
+})
+
+app.directive("uploadeditor", function(sharedScopeofFilterData){
+
+
+    function editorinit(scope){
+
+        scope.decisionsForFiles = [];
+
+        scope.filterscope = sharedScopeofFilterData.getsearchScope();
+
+        console.log(scope.filterscope);
+
+
+        resetDecisionHeader();
+
+
+        scope.showeditor = false;
+
+
+        scope.setFilterelementToDecision = function (selectedItem, header, source) {
+            scope[header] = selectedItem[source + "Name"];
+           // filter[source + "ID"] = selectedItem[source + "ID"];
+
+            for(var i = 0; i < scope.decisionsForFiles.length; i++){
+                if(scope.editfile.$$hashKey == scope.decisionsForFiles[i].id){
+                    scope.decisionsForFiles[i][source] = selectedItem[source + "Name"];
+
+                    if( scope.decisionsForFiles[i].school != "" && scope.decisionsForFiles[i].teacher != ""
+                        && scope.decisionsForFiles[i].subject != "" && scope.decisionsForFiles[i].course != "" && scope.decisionsForFiles[i].degree != "" &&
+                        scope.decisionsForFiles[i].semester != "" && scope.decisionsForFiles[i].year != ""){
+                        scope.showalldecisionschecked = scope.editfile.$$hashKey;
+                        console.log("Alles ausgefüllt");
+
+                        angular.element(document.getElementById("allchecked_" + scope.editfile.$$hashKey)).removeClass("notalldecisionsfilled");
+                        angular.element(document.getElementById("allchecked_" + scope.editfile.$$hashKey)).addClass("alldecisionsfilled");
+
+                        scope.decisionsForFiles[i].allfilled = true;
+
+                        scope.checkIfAllFilled();
+
+                    }
+                }
+            }
+        };
+
+        scope.checkIfAllFilled = function(){
+            var updatebuttonenable = false;
+
+            for(var i = 0; i < scope.decisionsForFiles.length; i++){
+                if(!scope.decisionsForFiles[i].allfilled){
+                    updatebuttonenable = true;
+                }
+            }
+
+            console.log(updatebuttonenable);
+            scope.disableupload = updatebuttonenable;
+
+
+        };
+
+        function resetDecisionHeader(){
+            scope.editorschoolHeader = scope.filterscope.schoolheader;
+            scope.availableSchools = scope.filterscope.availableSchools;
+
+            scope.editorteacherHeader = scope.filterscope.teacherheader;
+            scope.availableTeachers = scope.filterscope.availableTeachers;
+
+            scope.editorcourseHeader = scope.filterscope.courseheader;
+            scope.availableCourses = scope.filterscope.availableCourses;
+
+            scope.editorsubjectHeader = scope.filterscope.subjectheader;
+            scope.availableSubjects = scope.filterscope.availableSubjects;
+
+            scope.editordegreeHeader = scope.filterscope.degreeheader;
+            scope.availableDegrees = scope.filterscope.availableDegrees;
+
+            scope.editorsemesterHeader = scope.filterscope.semesterheader;
+            scope.availableSemesters = scope.filterscope.availableSemesters;
+
+            scope.editoryearHeader = scope.filterscope.yearheader;
+            scope.availableYears = scope.filterscope.availableYears;
+        };
+
+        function setDecisionsToEditfile(){
+            for(var i = 0; i < scope.decisionsForFiles.length; i++){
+                if(scope.editfile.$$hashKey == scope.decisionsForFiles[i].id){
+                    console.log(scope.decisionsForFiles[i]);
+
+                    if(scope.decisionsForFiles[i].school != ""){
+                        scope.editorschoolHeader = scope.decisionsForFiles[i].school;
+
+                    }
+                    if(scope.decisionsForFiles[i].teacher != ""){
+                        scope.editorteacherHeader = scope.decisionsForFiles[i].teacher;
+
+                    }
+                    if(scope.decisionsForFiles[i].subject != ""){
+                        scope.editorsubjectHeader = scope.decisionsForFiles[i].subject;
+
+                    }
+                    if(scope.decisionsForFiles[i].course != ""){
+                        scope.editorcourseHeader = scope.decisionsForFiles[i].course;
+
+                    }
+                    if(scope.decisionsForFiles[i].degree != ""){
+                        scope.editordegreeHeader = scope.decisionsForFiles[i].degree;
+
+                    }
+                    if(scope.decisionsForFiles[i].semester != ""){
+                        scope.editorsemesterHeader = scope.decisionsForFiles[i].semester;
+
+                    }
+                    if(scope.decisionsForFiles[i].year != ""){
+                        scope.editoryearHeader = scope.decisionsForFiles[i].year;
+
+                    }
+
+                }
+            }
+
+
+
+        }
+
+
+        scope.editorshow = function(editfile){
+
+            resetDecisionHeader();
+
+            scope.showeditor = true;
+            scope.selectedclassoffile = editfile.$$hashKey;
+            scope.editfile = editfile;
+
+            scope.handleDecisionsForFiles();
+            setDecisionsToEditfile();
+        };
+
+        scope.handleDecisionsForFiles = function(){
+
+            var isIn;
+
+                for(var j = 0; j < scope.uploadedfiles.length; j++){
+                    for(var k = 0; k < scope.decisionsForFiles.length; k++){
+                        if(scope.decisionsForFiles[k].id == scope.uploadedfiles[j].$$hashKey){
+                            isIn = true;
+                        }
+                    }
+
+                    if(!isIn || scope.decisionsForFiles.length == 0){
+                        // if(scope.decisionsForFiles.indexOf(scope.uploadedfiles[j].$$hashKey) ==  -1){
+
+                        scope.decisionsForFiles.push({
+                            id: scope.uploadedfiles[j].$$hashKey,
+                            name: scope.uploadedfiles[j].name,
+                            school: "",
+                            course: "",
+                            semester: "",
+                            degree: "",
+                            subject: "",
+                            teacher: "",
+                            year: "",
+                            allfilled: false
+                        });
+                        // }
+                    }
+
+                    isIn = false;
+            }
+        }
+
+        scope.uploadfiles = function(){
+
+            console.log("Upload gedrückt!");
+
+            var isIn;
+            for(var i = 0; i < scope.decisionsForFiles.length; i++){
+                for(var j = 0; j < scope.uploadedfiles.length; j++){
+                    if(scope.decisionsForFiles[i].id == scope.uploadedfiles[j].$$hashKey){
+                        isIn = true;
+                    }
+                }
+                if(!isIn){
+                    scope.decisionsForFiles.splice(i, 1);
+
+
+                }
+
+
+            isIn = false;
+            }
+
+        }
+
+
+
+    }
+
+
+
+
+    return{
+        restrict: "A",
+        templateUrl: "../loadedhtml/content/uploadEditor.html",
+        link: editorinit
     }
 })
 
