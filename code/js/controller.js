@@ -3,7 +3,7 @@
  */
 
 
-var app = angular.module('app', ['ngAnimate']);
+var app = angular.module('app', ['ngAnimate', 'ngSanitize']);
 
 angular.module('app').config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(['**']);
@@ -55,7 +55,6 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
     $scope.setThumbnail = function (clauseID, clausePath) {
         PDFJS.disableWorker = true;
-        console.log("http://www.klausurenhub.bplaced.net/" + clausePath + "");
         PDFJS.getDocument("http://www.klausurenhub.bplaced.net/" + clausePath + "").then(function getPdfHelloWorld(pdf) {
 
 
@@ -407,6 +406,10 @@ app.directive("dropzone", function () {
 
 
         var cachedFiles = [];
+        scope.statustext = "";
+        scope.success = true;
+
+
 
         scope.disableupload = true;
 
@@ -450,6 +453,7 @@ app.directive("dropzone", function () {
             evt.stopPropagation();
             evt.preventDefault();
 
+
             scope.disableupload = true;
 
 
@@ -464,14 +468,9 @@ app.directive("dropzone", function () {
                         cacheFiles(theFile, evt);
 
                         if (cachedFiles.length == files.length) {
+                            console.log("Dateien hinzugefügt");
                             storeFilesinDroppedZone(cachedFiles);
                         }
-
-
-                        /*  if(i == files.length){
-                         upload(evt);
-                         }*/
-
                     };
 
                 })(f);
@@ -517,6 +516,8 @@ app.directive("dropzone", function () {
                scope.showeditor = false;
            }
 
+           scope.checkIfAllFilled();
+
        }
 
         var setTextUploader = function (evt) {
@@ -546,7 +547,11 @@ app.directive("dropzone", function () {
 
         function cacheFiles(file, evt) {
             if(!checkIfIsPdf(file.name)){
-                handleDropzoneText(file.name + " ist keine .pdf!", "dropzoneerror" );
+
+                scope.success = false;
+                scope.statustext = "<b> " + file.name + " </b> ist keine .pdf!";
+                scope.handleDropzoneText(true);
+                scope.success = true;
             }else{
                 cachedFiles.push(file);
             }
@@ -554,112 +559,108 @@ app.directive("dropzone", function () {
 
         }
 
-        function upload(evt) {
+        scope.upload = function() {
 
             var fData = new FormData();
             for (var i in cachedFiles) {
                 fData.append('uploadedfile', cachedFiles[i]);
-            }
-            var xhr = new XMLHttpRequest();
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    try {
-                        var resp = JSON.parse(xhr.response);
-                    } catch (e) {
-                        var resp = {
-                            status: 'error',
-                            data: 'Unknown error occurred: [' + xhr.responseText + ']'
-                        };
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "../php/uploadFile.php", false);
+                xhr.onreadystatechange = onreadyforrequest;
+                xhr.setRequestHeader('Cache-Control','no-cache');
+                xhr.send(fData);
+
+                function onreadyforrequest()
+                {
+                    if (xhr.readyState == 4 ) {
+                        if (xhr.status == 200 || xhr.status == 304) {
+                            scope.showError(JSON.parse(xhr.response));
+
+
+
+                            if(JSON.parse(xhr.response).data == '5'){
+                                scope.writeToDatabase(cachedFiles[i].$$hashKey);
+                            }
+
+                            scope.handleDropzoneText(false);
+                        }
                     }
-                    showError(resp, evt);
                 }
-            };
 
-            //xhr.upload.addEventListener("progress", uploadProgress, false)
-            // xhr.addEventListener("load", uploadComplete, false)
-            // xhr.addEventListener("error", uploadFailed, false)
-            // xhr.addEventListener("abort", uploadCanceled, false)
-            xhr.open("POST", "../php/uploadFile.php");
 
-            xhr.send(fData);
+            }
 
         }
 
-        var handleDropzoneText = function(text, statusclass){
+        scope.showError = function (resp) {
+            console.log(resp);
+            switch (resp.data) {
+                case '1':
+                    scope.statustext += "<b>" + resp.status['name'] + " </b> Fehler " + "<br />";
+                    scope.success = false;
+                    break;
+                case '2':
+                    scope.statustext += "<b>" +  resp.status['name'] + " </b> keine PDF "  + "<br />";
+                    scope.success = false;
+                    break;
+                case '3':
+                    scope.statustext += "<b>" +   resp.status['name']  + " </b>  Maximalgröße 50MB "  + "<br />";
+                    scope.success = false;
+                    break;
+                case '4':
+                    scope.statustext += "<b>" +  resp.status['name'] + " </b> existiert serverseitig" + "<br />";
+                    scope.success = false;
+                    break;
+                case '5':
+                    scope.statustext += "<b>" + resp.status['name']+ " </b>  erfolgreich hochgeladen" + ""  + "<br />";
+                    break;
+                default:
+                    scope.statustext += "Unbekannter Fehler bei Datei: <b>" +resp.status['name'] + " </b>"  + "<br />";
+                    scope.success = false;
+                    break;
+
+            }
+                console.log(scope.statustext);
 
 
-            scope.$apply(function () {
-                scope.dropzonetext = text;
+        }
+
+        scope.handleDropzoneText = function(jpgCheck){
+
+            var statusclass;
+
+            if (scope.success) {
+                statusclass = "dropzonesuccess";
+            } else if(!scope.success) {
+                statusclass = "dropzoneerror";
+            }
+
+
+            if(jpgCheck){
+                scope.$apply(function () {
+                    scope.dropzonetext = scope.statustext;
+                    scope.dropzonestyleparam = statusclass;
+                });
+            }else{
+                scope.dropzonetext = scope.statustext;
                 scope.dropzonestyleparam = statusclass;
+            }
 
-            });
 
 
-            window.setTimeout(function () {
+
+           window.setTimeout(function () {
                 scope.$apply(function () {
                     scope.dropzonetext = "Datei(en) hier ablegen";
                     scope.dropzonestyleparam = "dropzonedefault";
+                    scope.statustext = "";
                 });
 
             }, 3000);
         }
-
-
-        var showError = function (resp, evt) {
-
-            var pluralhelper = "";
-            var success = false;
-
-            if (evt.originalEvent.dataTransfer.files.length > 1) {
-                var pluralhelper = "en";
-            } else {
-                var pluralhelper = "";
-            }
-
-            var statustext = "";
-            switch (resp.data) {
-                case '1':
-                    statustext = "Fehler während des Uploads!";
-                    break;
-                case '2':
-                    statustext = "Bitte ausschließlich .pdf Dateien hochladen!";
-                    break;
-                case '3':
-                    statustext = "Maximalgröße von 50MB überschritten!";
-                    break;
-                case '4':
-                    statustext = "Datei existierts serverseitig bereits!";
-                    break;
-                case '5':
-                    statustext = "Datei" + pluralhelper + " erfolgreich hochgeladen";
-                    success = true;
-                    break;
-                default:
-                    statustext = "Unbekannter Fehler";
-                    break;
-
-            }
-
-            scope.$apply(function () {
-
-                var statusclasstemp;
-
-                if (success) {
-                    statusclasstemp = "dropzonesuccess";
-                } else {
-                    statusclasstemp = "dropzoneerror";
-                }
-
-                handleDropzoneText(statustext, statusclasstemp );
-
-            });
-
-
-
-
-        }
-
 
 
 
@@ -673,7 +674,7 @@ app.directive("dropzone", function () {
     }
 })
 
-app.directive("uploadeditor", function(sharedScopeofFilterData){
+app.directive("uploadeditor", function(sharedScopeofFilterData, $http){
 
 
     function editorinit(scope){
@@ -682,7 +683,6 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
 
         scope.filterscope = sharedScopeofFilterData.getsearchScope();
 
-        console.log(scope.filterscope);
 
 
         resetDecisionHeader();
@@ -693,17 +693,17 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
 
         scope.setFilterelementToDecision = function (selectedItem, header, source) {
             scope[header] = selectedItem[source + "Name"];
-           // filter[source + "ID"] = selectedItem[source + "ID"];
+
 
             for(var i = 0; i < scope.decisionsForFiles.length; i++){
                 if(scope.editfile.$$hashKey == scope.decisionsForFiles[i].id){
-                    scope.decisionsForFiles[i][source] = selectedItem[source + "Name"];
+                    scope.decisionsForFiles[i][source] = selectedItem[source + "ID"];
 
                     if( scope.decisionsForFiles[i].school != "" && scope.decisionsForFiles[i].teacher != ""
                         && scope.decisionsForFiles[i].subject != "" && scope.decisionsForFiles[i].course != "" && scope.decisionsForFiles[i].degree != "" &&
                         scope.decisionsForFiles[i].semester != "" && scope.decisionsForFiles[i].year != ""){
                         scope.showalldecisionschecked = scope.editfile.$$hashKey;
-                        console.log("Alles ausgefüllt");
+
 
                         angular.element(document.getElementById("allchecked_" + scope.editfile.$$hashKey)).removeClass("notalldecisionsfilled");
                         angular.element(document.getElementById("allchecked_" + scope.editfile.$$hashKey)).addClass("alldecisionsfilled");
@@ -714,7 +714,11 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
 
                     }
                 }
+
+
             }
+
+
         };
 
         scope.checkIfAllFilled = function(){
@@ -726,7 +730,7 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
                 }
             }
 
-            console.log(updatebuttonenable);
+
             scope.disableupload = updatebuttonenable;
 
 
@@ -820,6 +824,7 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
                         }
                     }
 
+
                     if(!isIn || scope.decisionsForFiles.length == 0){
                         // if(scope.decisionsForFiles.indexOf(scope.uploadedfiles[j].$$hashKey) ==  -1){
 
@@ -844,8 +849,6 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
 
         scope.uploadfiles = function(){
 
-            console.log("Upload gedrückt!");
-
             var isIn;
             for(var i = 0; i < scope.decisionsForFiles.length; i++){
                 for(var j = 0; j < scope.uploadedfiles.length; j++){
@@ -863,6 +866,40 @@ app.directive("uploadeditor", function(sharedScopeofFilterData){
             isIn = false;
             }
 
+
+            scope.upload();
+
+
+
+
+            scope.success = true;
+
+
+
+
+        }
+
+        scope.writeToDatabase = function(id){
+
+
+
+            for(var i = 0; i < scope.decisionsForFiles.length; i++){
+
+                if(scope.decisionsForFiles[i].id == id){
+
+                    console.log("Erfolgreich datenbank");
+                    console.log(scope.decisionsForFiles[i]);
+                    var requestData = {'uploadedfile': JSON.stringify(scope.decisionsForFiles[i])};
+
+
+                    $http.post('../php/insertToDatabase.php', requestData,["Content-Type", "application/json;charset=UTF-8"])
+                        .then(function (response) {
+
+                        })
+                }
+
+
+            }
         }
 
 
