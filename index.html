@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="extern/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/filter.css">
+    <link rel="stylesheet" href="style/loading.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="extern/jquery/jquery.js"></script>
@@ -17,11 +18,15 @@
     <script src="extern/angularjs/angularjs.js"></script>
     <script src="extern/angularjs/angularjsanimation.js"></script>
     <script src="extern/angularjs/angularsanitize.js"></script>
+    <script src="extern/angularjs/angularfacebook.js"></script>
 
 
     <script src="code/js/mainpage.js"></script>
+
     <script src="code/js/controller.js"></script>
-   <!-- <script src="code/js/facebooklogin.js"></script> -->
+    <script src="code/js/facebookcontroller.js"></script>
+
+    <script src="code/js/facebooklogin.js"></script>
 
     <script type="text/javascript" src="https://rawgithub.com/mozilla/pdf.js/gh-pages/build/pdf.js"></script>
 
@@ -33,22 +38,42 @@
 
 <div class="container-fluid  headerpanel" id="header">
     <div class="row">
-        <div class="col-lg-10 col-md-10 col-xs-10 pull-left">
+        <div class="col-lg-9 col-md-9 col-xs-9 pull-left">
             <a href="http://www.klausurenhub.bplaced.net">
                 <img src="images/logo/Logo_Klausurenhub.png" class="img-responsive" alt="Klausurenhub Logo" id="logo">
             </a>
         </div>
 
-        <div class="col-lg-1 col-md-1 col-xs-1 pull-right " ng-controller="logincontroller">
 
-            <p id="login" ng-click="changeViewToUpload()">Login</p>
 
-            <!--
-            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+        <div class="col-lg-1 col-md-1 col-xs-1 pull-right" ng-controller="authenticationCtrl">
+            <div  id="facebookloginbutton" >
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.8&appId=1710610359248953";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
 
-            -->
 
-    </div>
+
+
+                <fb:login-button scope="public_profile,email"  data-show-faces="false" data-auto-logout-link="true" data-size="large">
+                </fb:login-button>
+
+                <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-show-faces="false" data-auto-logout-link="true" data-size="large">
+                 </fb:login-button> -->
+
+            </div>
+            </div>
+
+        <div class="col-lg-2 col-md-2 col-xs-2 pull-right uploadbuttondiv" ng-controller="logincontroller">
+            <span id="facebooknamespan">{{facebookname}}</span>
+            <i id="login" ng-click="changeViewToUpload()"  class="material-icons">file_upload</i>
+
+        </div>
 
     </div>
 </div>

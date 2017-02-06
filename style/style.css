@@ -64,12 +64,15 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
-    color: #7F7E7D;
+    color: #FF9900;
+    opacity: 0.5;
+    font-size: 30px;
+    display:none;
 }
 
 #login:hover {
-    color: #ffffff;
     cursor: pointer;
+    opacity: 1.0;
 }
 
 #logo {
@@ -440,10 +443,33 @@ cursor: pointer;
     display: none !important;
 }
 
+#facebooknamespan{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    margin-right: 5px;
+    display: none;
+}
 
 
 
 
+
+
+
+
+
+
+
+/* Loginbutton */
+
+#facebookloginbutton{
+    margin-top: 10px;
+}
+
+.uploadbuttondiv{
+    padding-right: 0px !important;
+}
 
 
 

@@ -14,7 +14,7 @@ $requestJSON = json_decode($request->uploadedfile, true);
 
  $name = $requestJSON['name'];
  $path = 'altklausuren/' . $requestJSON['name'];
- $uploader = 'Admin';
+ $uploader = $requestJSON['uploader'];
  $school = $requestJSON['school'];
  $course = $requestJSON['course'];
  $degree = $requestJSON['degree'];

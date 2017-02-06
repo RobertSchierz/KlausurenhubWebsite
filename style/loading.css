@@ -1,0 +1,176 @@
+.cssload-container{
+
+    filter: url('#blur');
+    filter: blur(5px);
+
+    position: absolute;
+    width: 95% !important;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 1;
+
+
+    display: block;
+    margin: auto;
+    width:49px;
+}
+
+.cssload-loading{
+
+    position: absolute;
+    z-index: 100 !important;
+    opacity: 1 !important;
+    left: calc(50% - 44px);
+    top: calc(50% - 44px);
+
+
+
+
+    width: 44px;
+    height: 44px;
+    text-align: left;
+    animation:cssload-loading-ani1 2.3s ease-in-out infinite;
+    -o-animation:cssload-loading-ani1 2.3s ease-in-out infinite;
+    -ms-animation:cssload-loading-ani1 2.3s ease-in-out infinite;
+    -webkit-animation:cssload-loading-ani1 2.3s ease-in-out infinite;
+    -moz-animation:cssload-loading-ani1 2.3s ease-in-out infinite;
+}
+.cssload-loading i,
+.cssload-loading i:before{
+    content: "";
+    width: 44px;
+    height: 44px;
+    position: absolute;
+}
+.cssload-loading i{
+    border-radius: 50%;
+    overflow: hidden;
+}
+.cssload-loading i:nth-child(1){
+    background: rgb(255,153,0);
+    transform:translate(0,-24px);
+    -o-transform:translate(0,-24px);
+    -ms-transform:translate(0,-24px);
+    -webkit-transform:translate(0,-24px);
+    -moz-transform:translate(0,-24px);
+}
+.cssload-loading i:nth-child(1):before{
+    background: rgb(255,255,255);
+    bottom: 0;
+    animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -o-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -ms-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -webkit-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -moz-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+}
+.cssload-loading i:nth-child(2){
+    background: rgb(255,255,255);
+    transform:translate(0,24px);
+    -o-transform:translate(0,24px);
+    -ms-transform:translate(0,24px);
+    -webkit-transform:translate(0,24px);
+    -moz-transform:translate(0,24px);
+}
+.cssload-loading i:nth-child(2):before{
+    animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -o-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -ms-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -webkit-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    -moz-animation:cssload-loading-ani2 2.3s ease-in-out infinite;
+    background: rgb(255,153,0);
+}
+
+
+
+@keyframes cssload-loading-ani1{
+    40%,50%{
+        transform:rotate(180deg);
+    }
+    90%,100%{
+        transform:rotate(360deg);
+    }
+}
+
+@-o-keyframes cssload-loading-ani1{
+    40%,50%{
+        -o-transform:rotate(180deg);
+    }
+    90%,100%{
+        -o-transform:rotate(360deg);
+    }
+}
+
+@-ms-keyframes cssload-loading-ani1{
+    40%,50%{
+        -ms-transform:rotate(180deg);
+    }
+    90%,100%{
+        -ms-transform:rotate(360deg);
+    }
+}
+
+@-webkit-keyframes cssload-loading-ani1{
+    40%,50%{
+        -webkit-transform:rotate(180deg);
+    }
+    90%,100%{
+        -webkit-transform:rotate(360deg);
+    }
+}
+
+@-moz-keyframes cssload-loading-ani1{
+    40%,50%{
+        -moz-transform:rotate(180deg);
+    }
+    90%,100%{
+        -moz-transform:rotate(360deg);
+    }
+}
+
+@keyframes cssload-loading-ani2{
+    40%,100%{
+        height:100%;
+    }
+    50%,90%{
+        height:0;
+    }
+}
+
+@-o-keyframes cssload-loading-ani2{
+    40%,100%{
+        height:100%;
+    }
+    50%,90%{
+        height:0;
+    }
+}
+
+@-ms-keyframes cssload-loading-ani2{
+    40%,100%{
+        height:100%;
+    }
+    50%,90%{
+        height:0;
+    }
+}
+
+@-webkit-keyframes cssload-loading-ani2{
+    40%,100%{
+        height:100%;
+    }
+    50%,90%{
+        height:0;
+    }
+}
+
+@-moz-keyframes cssload-loading-ani2{
+    40%,100%{
+        height:100%;
+    }
+    50%,90%{
+        height:0;
+    }
+}
