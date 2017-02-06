@@ -14,7 +14,7 @@ angular.module('app').config(function (FacebookProvider) {
 });
 
 
-var initTimer = 0;
+
 var filter = {};
 
 var filterActive = true;
@@ -114,16 +114,15 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
     $scope.initContent = function () {
 
 
-        if (initTimer == 0) {
+
             $http.post('../php/getClauses.php').then(function (response) {
 
 
                 $rootScope.clauses = response.data;
-
+                console.log("Content refresh");
 
             });
-            initTimer += 1;
-        }
+
 
 
     };
@@ -256,7 +255,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
     }
 
     $scope.resetFilter = function () {
-        initTimer = 0;
+
         var sharedscope = sharedScopeofContentData.getList();
 
         sharedscope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
@@ -458,7 +457,6 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 
 
         $scope.back = function () {
-
             $scope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
 
         }
@@ -586,21 +584,28 @@ app.directive("dropzone", function () {
                 if(cachedFiles[i].$$hashKey == uploadedfile.$$hashKey){
 
                  cachedFiles.splice(i, 1);
-
-
                 }
+
+                if( $scope.decisionsForFiles[i] != undefined && $scope.decisionsForFiles[i].id == uploadedfile.$$hashKey ){
+                    $scope.decisionsForFiles.splice(i,1);
+                }
+
             }
 
            if(uploadedfile == $scope.editfile){
                $scope.showeditor = false;
            }
 
+           $scope.checkIfAllFilled();
+
            if(cachedFiles.length == 0){
+
                $scope.disableupload = true;
                $scope.showeditor = false;
            }
 
-           $scope.checkIfAllFilled();
+
+
 
        }
 
