@@ -1,7 +1,7 @@
 
 <?php
 
-// Including database connections
+
 require_once 'database_connections.php';
 
 
@@ -24,7 +24,7 @@ $requestJSON = json_decode($request->uploadedfile, true);
  $year = $requestJSON['year'];
 
 
-// mysqli query to fetch all data from database
+
 $query = "      INSERT INTO `klausurenhub`.`clauses` (
                 `clauseID` ,
                 `clauseName` ,

@@ -1,11 +1,10 @@
 
 <?php
 
-// Including database connections
 require_once 'database_connections.php';
 
 
-// mysqli query to fetch all data from database
+
 $query =   "SELECT clauseID , clauseName, Path, Uploader, courseName, schoolName, degreeName, semesterName, subjectName, teacherName, yearName
                                        FROM `clauses`
                                        LEFT JOIN courses
@@ -38,7 +37,7 @@ $arr[] = $row;
 }
 }
 
-// Return json array containing data from the databasecon
+
 echo  json_encode($arr);
 ?>
 

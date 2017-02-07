@@ -1,7 +1,7 @@
 
 <?php
 
-// Including database connections
+
 require_once 'database_connections.php';
 
 
@@ -15,7 +15,7 @@ $request = json_decode($data, true);
 
 
 
-// mysqli query to fetch all data from database
+
 $query = "      INSERT INTO `klausurenhub`.`user` (
                 `ID` ,
                 `userEmail`,

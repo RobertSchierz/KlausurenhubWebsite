@@ -1,7 +1,7 @@
 
 <?php
 
-// Including database connections
+
 require_once 'database_connections.php';
 
 
@@ -15,9 +15,6 @@ $request = json_decode($data, true);
 
 
 
-
-
-// mysqli query to fetch all data from database
 $query = "SELECT * from `klausurenhub`.`user` ";
 
 $result = mysqli_query($con, $query);
@@ -26,8 +23,6 @@ $result = mysqli_query($con, $query);
 
 if(mysqli_num_rows($result) != 0) {
 while($row = mysqli_fetch_assoc($result)) {
-
-
 
 
 
