@@ -16,6 +16,7 @@ angular.module('app').config(function (FacebookProvider) {
 
 
 var filter = {};
+var initTimer = 0;
 
 var filterActive = true;
 var searchActive = false;
@@ -28,244 +29,13 @@ resetFilter();
 
 
 
-var facebookcontroller = app.controller('authenticationCtrl', ['$scope','Facebook' ,'$rootScope', '$q', '$http', function($scope, Facebook, $rootScope, $q, $http) {
 
 
-    $scope.userWriteToDatabase = function(){
 
-        var requestData =  JSON.stringify({id: $rootScope.facebooid, email: $rootScope.facebookemail, name: $rootScope.facebookname});
 
-        $http.post('../php/uploadUser.php', requestData,["Content-Type", "application/json;charset=UTF-8"])
-            .then(function (response) {
 
-            })
-    }
 
-    $scope.$watch(function() {
-        return Facebook.isReady();
-    }, function(newVal) {
 
-        $scope.$on('Facebook:statusChange', function(ev, data) {
-
-
-
-            if (data.status == 'connected') {
-
-                $scope.$apply(function() {
-
-
-
-                    getMyLastName().then(function(response) {
-                        console.log(response);
-                        $rootScope.facebookname = response.name;
-                        $rootScope.facebooid = response.id;
-                        $rootScope.facebookemail = response.email;
-                        $("#login").show(500);
-                        $("#facebooknamespan").show(500);
-
-                        $scope.userWriteToDatabase();
-
-                    });
-                });
-
-            } else {
-
-                $scope.$apply(function() {
-                    console.log(data);
-                    $("#login").hide(500);
-                    $("#facebooknamespan").hide(500, function () {
-                        $rootScope.facebookname = "";
-                        $rootScope.facebooid = "";
-                        $rootScope.facebookemail = "";
-                    });
-
-                });
-
-            }
-
-
-        });
-
-        function getMyLastName() {
-            var deferred = $q.defer();
-            FB.api('/me', {fields: 'name, email'}, function(response) {
-                if (!response || response.error) {
-                    deferred.reject('Error occured');
-                } else {
-                    deferred.resolve(response);
-                }
-            });
-            return deferred.promise;
-        }
-
-    });
-}]);
-
-
-var contentAppController = app.controller('contentcontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
-
-
-
-
-
-    sharedScopeofContentData.addList($scope);
-
-
-    $scope.initContent = function () {
-
-
-
-            $http.post('../php/getClauses.php').then(function (response) {
-
-
-                $rootScope.clauses = response.data;
-                console.log("Content refresh");
-
-            });
-
-
-
-    };
-
-    $scope.getPdfUrl = function () {
-
-        var contentscope = sharedScopeofFilterData.getList();
-
-        return "http://klausurenhub.bplaced.net/" + contentscope.Path;
-
-    }
-
-    $scope.setThumbnail = function (clauseID, clausePath) {
-        PDFJS.disableWorker = true;
-        PDFJS.getDocument("http://www.klausurenhub.bplaced.net/" + clausePath + "").then(function getPdfHelloWorld(pdf) {
-
-
-            pdf.getPage(1).then(function getPageHelloWorld(page) {
-                var scale = 0.2;
-                var viewport = page.getViewport(scale);
-
-                //
-                // Prepare canvas using PDF page dimensions
-                //
-                var canvas = document.getElementById(clauseID);
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                //
-                // Render PDF page into canvas context
-                //
-                page.render({canvasContext: context, viewport: viewport});
-            });
-        });
-
-    }
-
-
-})
-
-
-var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
-
-    sharedScopeofFilterData.addsearchScope($scope);
-
-
-    $scope.setFilterStandardValues = function () {
-        $scope.schoolheader = "Hochschulen";
-        $scope.teacherheader = "Lehrkraft";
-        $scope.courseheader = "Studiengang";
-        $scope.subjectheader = "Modul";
-        $scope.degreeheader = "Grad";
-        $scope.semesterheader = "Semester";
-        $scope.yearheader = "Jahr";
-
-    }
-
-
-    filter;
-
-    $scope.loadAvailableOptions = function (scopeVariableName, database) {
-
-        var requestData = {'database': database};
-
-        $http.post('../php/getAvailableOptions.php', requestData)
-            .then(function (response) {
-
-                $scope[scopeVariableName] = response.data;
-
-
-            })
-
-    };
-
-    $scope.setFilterelementToDecision = function (selectedItem, header, source) {
-        $scope[header] = selectedItem[source + "Name"];
-        filter[source + "ID"] = selectedItem[source + "ID"];
-
-
-        $scope.updateContent();
-
-
-    };
-
-    $scope.updateContent = function () {
-
-
-        var filterQuery = " SELECT * " +
-            " FROM clauses " +
-            " LEFT JOIN courses " +
-            " ON clauses.courseID = courses.courseID " +
-            " LEFT JOIN schools " +
-            " ON clauses.schoolID = schools.schoolID " +
-            " LEFT JOIN degrees " +
-            " ON clauses.degreeID = degrees.degreeID" +
-            " LEFT JOIN semesters " +
-            " ON clauses.semesterID = semesters.semesterID " +
-            " LEFT JOIN subjects " +
-            " ON clauses.subjectID = subjects.subjectID" +
-            " LEFT JOIN teachers " +
-            " ON clauses.teacherID = teachers.teacherID" +
-            " LEFT JOIN years " +
-            " ON clauses.yearID = years.yearID" +
-            " WHERE ";
-
-
-
-        for (var key in filter) {
-            if (filter.hasOwnProperty(key) && filter[key] != null) {
-                filterQuery += ("clauses." + key + " = " + "'" + filter[key] + "' AND ");
-
-            }
-        }
-
-
-        filterQuery = filterQuery.slice(0, -4);
-
-
-
-        var requestData = {'query': filterQuery };
-
-        $http.post('../php/getFilteredQuery.php', requestData)
-            .then(function (response) {
-
-                $rootScope.clauses = response.data;
-
-
-            })
-    }
-
-    $scope.resetFilter = function () {
-
-        var sharedscope = sharedScopeofContentData.getList();
-
-        sharedscope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
-        sharedscope.initContent();
-        $scope.setFilterStandardValues();
-        resetFilter();
-    }
-
-
-});
 
 var mainButtonController = app.controller('mainbuttoncontroller', function ($scope, sharedScopeofFilterData, sharedScopeofSearchData) {
 
@@ -399,42 +169,7 @@ app.directive('documentsearchbar', function () {
     }
 });
 
-var searchController = app.controller('searchcontroller', function ($scope, $http, $rootScope, sharedScopeofSearchData, sharedScopeofContentData) {
 
-
-    $scope.hidesearchbar = true;
-
-    $scope.handleSearchbar = function (state) {
-        $scope.hidesearchbar = state;
-
-        //Reset der Suche wenn Filterbutton betätigt wird
-
-        $scope.searchvalue = "";
-        $scope.searchboxChanged();
-
-
-    }
-
-    $scope.searchboxChanged = function () {
-
-        var requestData = {'searchvalue': $scope.searchvalue};
-
-
-        //var contentscope = sharedScopeofContentData.getList();
-
-        $http.post('../php/getSearchResult.php', requestData)
-            .then(function (response) {
-                console.log(response.data);
-                $rootScope.clauses = response.data;
-
-
-            })
-
-
-    }
-
-    sharedScopeofSearchData.addsearchScope($scope);
-});
 
 var loginController = app.controller('logincontroller', function ($scope, sharedScopeofContentData) {
 
@@ -457,7 +192,9 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 
 
         $scope.back = function () {
+            sharedScopeofFilterData.getsearchScope().updateContent();
             $scope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
+
 
         }
 
@@ -560,6 +297,8 @@ app.directive("dropzone", function () {
             }
 
 
+
+
         });
 
         function checkIfIsPdf(filename) {
@@ -627,6 +366,7 @@ app.directive("dropzone", function () {
 
             $scope.$apply(function () {
                 $scope.uploadedfiles = cachedFiles;
+
 
             })
 
@@ -839,6 +579,8 @@ app.directive("uploadeditor", function(sharedScopeofFilterData, $http, $rootScop
         $scope.checkIfAllFilled = function(){
             var updatebuttonenable = false;
 
+            console.log($scope.decisionsForFiles);
+
             for(var i = 0; i < $scope.decisionsForFiles.length; i++){
                 if(!$scope.decisionsForFiles[i].allfilled){
                     updatebuttonenable = true;
@@ -852,25 +594,25 @@ app.directive("uploadeditor", function(sharedScopeofFilterData, $http, $rootScop
         };
 
         function resetDecisionHeader(){
-            $scope.editorschoolHeader = $scope.filterscope.schoolheader;
+            $scope.editorschoolHeader = "Hochschulen";
             $scope.availableSchools = $scope.filterscope.availableSchools;
 
-            $scope.editorteacherHeader = $scope.filterscope.teacherheader;
+            $scope.editorteacherHeader = "Lehrkraft";
             $scope.availableTeachers = $scope.filterscope.availableTeachers;
 
-            $scope.editorcourseHeader = $scope.filterscope.courseheader;
+            $scope.editorcourseHeader = "Studiengang";
             $scope.availableCourses = $scope.filterscope.availableCourses;
 
-            $scope.editorsubjectHeader = $scope.filterscope.subjectheader;
+            $scope.editorsubjectHeader = "Modul";
             $scope.availableSubjects = $scope.filterscope.availableSubjects;
 
-            $scope.editordegreeHeader = $scope.filterscope.degreeheader;
+            $scope.editordegreeHeader = "Grad";
             $scope.availableDegrees = $scope.filterscope.availableDegrees;
 
-            $scope.editorsemesterHeader = $scope.filterscope.semesterheader;
+            $scope.editorsemesterHeader = "Semester";
             $scope.availableSemesters = $scope.filterscope.availableSemesters;
 
-            $scope.editoryearHeader = $scope.filterscope.yearheader;
+            $scope.editoryearHeader = "Jahr";
             $scope.availableYears = $scope.filterscope.availableYears;
         };
 
