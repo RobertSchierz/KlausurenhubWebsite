@@ -1,6 +1,10 @@
 /**
- * Created by Rober on 07.02.2017.
+ * Created by Rober on 28.01.2017.
  */
+
+
+
+
 var facebookcontroller = app.controller('authenticationCtrl', ['$scope','Facebook' ,'$rootScope', '$q', '$http', function($scope, Facebook, $rootScope, $q, $http) {
 
 
@@ -29,7 +33,7 @@ var facebookcontroller = app.controller('authenticationCtrl', ['$scope','Faceboo
 
 
                     getMyLastName().then(function(response) {
-                        console.log(response);
+
                         $rootScope.facebookname = response.name;
                         $rootScope.facebooid = response.id;
                         $rootScope.facebookemail = response.email;
@@ -44,7 +48,7 @@ var facebookcontroller = app.controller('authenticationCtrl', ['$scope','Faceboo
             } else {
 
                 $scope.$apply(function() {
-                    console.log(data);
+
                     $("#login").hide(500);
                     $("#facebooknamespan").hide(500, function () {
                         $rootScope.facebookname = "";

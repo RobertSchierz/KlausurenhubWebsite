@@ -1,15 +1,15 @@
 %PDF-1.4
 %ÓôÌá
 % PDFsharp Version 0.8.494 (verbose mode)
-% Creation date: 02.10.2016 21:04:27             
-% Creation time: 0.031 seconds                   
-% File size:     29211 bytes                     
+% Creation date: 15.02.2017 23:04:15             
+% Creation time: 0.625 seconds                   
+% File size:     30472 bytes                     
 % Pages:         1                               
 % Objects:       13                              
 %--------------------------------------------------------------------------------------------------
 1 0 obj   % PdfSharp.Pdf.PdfDocumentInformation
 <<
-  /CreationDate (D:20161002210427+02'00')
+  /CreationDate (D:20170215230415+01'00')
   /Creator (PDFsharp 0.8.494 \(www.pdfsharp.com\))
   /Producer (PDFsharp 0.8.494 \(www.pdfsharp.com\))
 >>
@@ -42,7 +42,7 @@ endobj
 %--------------------------------------------------------------------------------------------------
 5 0 obj   % PdfSharp.Pdf.Advanced.PdfContent
 <<
-  /Length 4811
+  /Length 6072
 >>
 stream
 q
@@ -51,10 +51,9 @@ q
 BT
 /GS0 gs
 /F0 -13 Tf
-189.651 51.19 Td (Belegplan für Schierz, Robert) Tj
--38.104 24.405 Td (2. Semester  / Medieninformatik Master  /  M-MI) Tj
--73.138 38.358 Td (Über die endgültige Belegung entscheidet die jeweilige Lehrkraft!) Tj
-132.346 -13.358 Td (Wintersemester 2016 / 2017) Tj
+182.44 51.19 Td (     Stundenplan für Studierende) Tj
+-30.894 24.405 Td (3. Semester  / Medieninformatik Master  /  M-MI) Tj
+50.546 25 Td (Sommersemester 2017 / Zug 1) Tj
 ET
 2 w
 0 J
@@ -240,115 +239,12 @@ BT
 154.4 0 Td (Mittwoch) Tj
 154.4 0 Td (Donnerstag) Tj
 154.4 0 Td (Freitag) Tj
-ET
-1 1 1 rg
-358.8 330.259 154.4 39.862 re
-B
-BT
-0 0 0 rg
-360.8 339.259 Td (B 101) Tj
-/F1 -7 Tf
-127.042 0 Td (159072) Tj
--127.042 29.042 Td (Schirmacher, Hartmut) Tj
-0 -21.104 Td (Aktuelle Themen der Medieninformatik) Tj
-ET
-1 1 1 rg
-204.4 214.483 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-206.4 223.483 Td (B 023) Tj
-/F1 -7 Tf
-127.042 0 Td (159081) Tj
--127.042 29.042 Td (Kreutel, Jörn) Tj
-0 -21.104 Td (E-Business-Projekt) Tj
-ET
-1 1 1 rg
-204.4 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-206.4 284.776 Td (B 023) Tj
-/F1 -7 Tf
-127.042 0 Td (159082) Tj
--127.042 29.042 Td (Kreutel, Jörn) Tj
-0 -21.104 Td (E-Business-Projekt Übg.) Tj
-ET
-1 1 1 rg
-50 160 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-52 169 Td (B 332 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159093) Tj
--127.042 29.042 Td (Reimer, Hans-Georg) Tj
-0 -21.104 Td (Game Engine Architecture) Tj
-ET
-1 1 1 rg
-50 214.483 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-52 223.483 Td (B 332 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159094) Tj
--127.042 29.042 Td (Reimer, Hans-Georg) Tj
-0 -21.104 Td (Game Engine Architecture Übg.) Tj
-ET
-1 1 1 rg
-513.2 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-515.2 284.776 Td (B 223 L\rB 444) Tj
-/F1 -7 Tf
-127.042 0 Td (159073) Tj
--127.042 29.042 Td (Strzebkowski, Robert) Tj
-0 -20.843 Td (Human-Computer Interaction) Tj
-ET
-1 1 1 rg
-513.2 330.259 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-515.2 339.259 Td (B 223 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159074) Tj
--17.493 29.042 Td (14-tgl. Gr. 1b) Tj
--109.548 0 Td (Strzebkowski, Robert) Tj
-0 -21.104 Td (Human-Computer Interaction Übg.) Tj
-ET
-1 1 1 rg
-50 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-52 284.776 Td (B 323) Tj
-/F1 -7 Tf
-127.042 0 Td (159075) Tj
--127.042 29.042 Td (Buchberger, Erhard) Tj
-0 -21.104 Td (IT-Projektmanagement) Tj
-ET
-1 1 1 rg
-50 330.259 154.4 39.862 re
-B
-BT
-0 0 0 rg
-/F1 -8 Tf
-52 339.259 Td (B 323) Tj
-/F1 -7 Tf
-127.042 0 Td (159076) Tj
--17.493 29.042 Td (14-tgl. Gr. 1b) Tj
--109.548 0 Td (Buchberger, Erhard) Tj
-0 -21.104 Td (IT-Projektmanagement Übg.) Tj
+/F1 -6 Tf
+-668.067 11 Td (Zug 1) Tj
+154.4 0 Td (Zug 1) Tj
+154.4 0 Td (Zug 1) Tj
+154.4 0 Td (Zug 1) Tj
+154.4 0 Td (Zug 1) Tj
 ET
 1 1 1 rg
 50 377.931 154.4 39.862 re
@@ -356,27 +252,206 @@ B
 BT
 0 0 0 rg
 /F1 -8 Tf
-52 386.931 Td (B 323) Tj
+52 386.931 Td (D 138 L) Tj
 /F1 -7 Tf
-127.042 0 Td (159077) Tj
--10.486 29.042 Td (bis 51. KW) Tj
--116.555 0 Td (Hönemann, Angelika) Tj
-0 -21.104 Td (Wissenschaftliches Arbeiten Übg.) Tj
+127.042 0 Td (159083) Tj
+-127.042 29.042 Td (Löser, Alexander) Tj
+/F1 -8 Tf
+0 -21.104 Td (Enterprise Data Management / SU) Tj
 ET
 1 1 1 rg
 50 425.603 154.4 39.862 re
 B
 BT
 0 0 0 rg
-/F1 -8 Tf
-52 434.603 Td (B 323) Tj
+52 434.603 Td (D 138 L) Tj
 /F1 -7 Tf
-127.042 0 Td (159077) Tj
--10.486 29.042 Td (bis 51. KW) Tj
--116.555 0 Td (Hönemann, Angelika) Tj
-0 -21.104 Td (Wissenschaftliches Arbeiten Übg.) Tj
-219.19 125.549 Td (Stand: 02. Oktober 2016 um 21:04, aktuellste Version unter http://www.beuth-hochschule.de/vrp.) Tj
-483.003 0 Td (Seite  1 von 1) Tj
+127.042 0 Td (159084) Tj
+-127.042 29.042 Td (Löser, Alexander) Tj
+/F1 -8 Tf
+0 -21.104 Td (Enterprise Data Management Übg. / Ü) Tj
+ET
+1 1 1 rg
+50 214.483 154.4 39.862 re
+B
+BT
+0 0 0 rg
+52 223.483 Td (B 223 L) Tj
+/F1 -7 Tf
+127.042 0 Td (159089) Tj
+-127.042 29.042 Td (Steppat, Michael) Tj
+/F1 -8 Tf
+0 -21.104 Td (Entwicklung Mobiler Applikationen / SU) Tj
+ET
+1 1 1 rg
+50 275.776 154.4 39.862 re
+B
+BT
+0 0 0 rg
+52 284.776 Td (B 223 L) Tj
+/F1 -7 Tf
+127.042 0 Td (159090) Tj
+-127.042 29.042 Td (Steppat, Michael) Tj
+/F1 -8 Tf
+0 -21.104 Td (Entwicklung Mobiler Applikationen Übg. /) Tj
+0 9 Td (Ü) Tj
+ET
+1 1 1 rg
+667.6 214.483 154.4 39.862 re
+B
+BT
+0 0 0 rg
+669.6 223.483 Td (B 321) Tj
+/F1 -7 Tf
+127.042 0 Td (159095) Tj
+-127.042 29.042 Td (Hildebrand, Kristian) Tj
+/F1 -8 Tf
+0 -21.104 Td (Interactive Systems / SU) Tj
+ET
+1 1 1 rg
+667.6 275.776 154.4 39.862 re
+B
+BT
+0 0 0 rg
+669.6 284.776 Td (B 332 L) Tj
+/F1 -7 Tf
+127.042 0 Td (159096) Tj
+-127.042 29.042 Td (Hildebrand, Kristian) Tj
+/F1 -8 Tf
+0 -21.104 Td (Interactive Systems Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 214.483 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 223.483 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1a) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 275.776 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 284.776 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1a) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 330.259 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 339.259 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1a) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 160 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 169 Td (B 321) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1a) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+513.2 425.603 154.4 39.862 re
+B
+BT
+0 0 0 rg
+515.2 434.603 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1b) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+513.2 473.276 154.4 39.862 re
+B
+BT
+0 0 0 rg
+515.2 482.276 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1b) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 377.931 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 386.931 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1b) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+358.8 425.603 154.4 39.862 re
+B
+BT
+0 0 0 rg
+360.8 434.603 Td ( ) Tj
+/F1 -7 Tf
+127.042 0 Td (159078) Tj
+3.907 29.042 Td (Gr. 1b) Tj
+-130.948 0 Td (Macos, Dragan) Tj
+/F1 -8 Tf
+0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+ET
+1 1 1 rg
+667.6 330.259 154.4 39.862 re
+B
+BT
+0 0 0 rg
+669.6 339.259 Td (B 321\rB 332 L) Tj
+/F1 -7 Tf
+127.042 0 Td (159101) Tj
+-127.042 29.042 Td (Härting, Ute) Tj
+0 -7.82 Td (Oehmichen, Peter) Tj
+/F1 -8 Tf
+0 -13.022 Td (Transmediale Gestaltung interaktiver Szen) Tj
+ET
+1 1 1 rg
+667.6 377.931 154.4 39.862 re
+B
+BT
+0 0 0 rg
+669.6 386.931 Td (B 321\rB 332 L) Tj
+/F1 -7 Tf
+127.042 0 Td (159102) Tj
+-127.042 29.042 Td (Härting, Ute) Tj
+0 -7.82 Td (Oehmichen, Peter) Tj
+/F1 -8 Tf
+0 -13.022 Td (Transmediale Gestaltung interaktiver Szen) Tj
+/F1 -7 Tf
+-398.215 172.96 Td (Stand: 15. Februar 2017 um 23:04, aktuellste Version unter http://www.beuth-hochschule.de/vrp.) Tj
+482.808 0 Td (Seite  1 von 1) Tj
 ET
 Q
 Q
@@ -575,21 +650,21 @@ xref
 0000000903 00000 n 
 0000001092 00000 n 
 0000001331 00000 n 
-0000006332 00000 n 
-0000006673 00000 n 
-0000006860 00000 n 
-0000007209 00000 n 
-0000008544 00000 n 
-0000008732 00000 n 
-0000027091 00000 n 
-0000027436 00000 n 
+0000007593 00000 n 
+0000007934 00000 n 
+0000008121 00000 n 
+0000008470 00000 n 
+0000009805 00000 n 
+0000009993 00000 n 
+0000028352 00000 n 
+0000028697 00000 n 
 trailer
 <<
-  /ID [<D69693A1982696479F08D4C7C68C0BAC><D69693A1982696479F08D4C7C68C0BAC>]
+  /ID [<271F176683306345827B7112E5C524C1><271F176683306345827B7112E5C524C1>]
   /Info 1 0 R
   /Root 2 0 R
   /Size 14
 >>
 startxref
-28769
+30030
 %%EOF

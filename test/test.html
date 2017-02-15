@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="/extern/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="/extern/bootstrap/css/bootstrap.css">
+    <script src="/extern/bootstrap/js/bootstrap.js"></script>
+    <script src="/extern/angularjs/angularjs.js"></script>
+    <script src='test.js'></script>
+
+</head>
+<body ng-app="testapp">
+
+
+
+    <div class="col-lg-12 col-md-12 col-xs-12" ng-controller="testcontroller" >
+
+        <div class=" col-lg-3 col-md-3 col-xs-3 pull-left" >
+
+                <span class="col-lg-12 col-md-12 col-xs-12 "> {{header}} </span>
+            <ul>
+                <li ng-repeat="school in schools "> <a> {{school.schoolName}}</a></li>
+
+            </ul>
+
+            <button ng-click="reload()">reload</button>
+            <br/><br/><br/><br/>
+            <img ng-src="{{source}}" width="30px" height="30px">
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

@@ -27,7 +27,7 @@ $response = $fb->post('/1269198996497098/notifications',  array(
 'access_token' => $app_access_token
 )
 
-print "test";
+
 
 );
 
