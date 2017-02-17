@@ -18,7 +18,7 @@ var searchController = app.controller('searchcontroller', function ($scope, $htt
     }
 
     $scope.searchboxChanged = function () {
-
+        handleScopesService.getScopeOf(0).loadingfilter = true;
         var requestData = {'searchvalue': $scope.searchvalue};
 
 
@@ -27,9 +27,7 @@ var searchController = app.controller('searchcontroller', function ($scope, $htt
             .then(function (response) {
 
                 handleScopesService.getScopeOf(0).clauses = response.data;
-               // $rootScope.clauses = response.data;
-
-
+                handleScopesService.getScopeOf(0).loadingfilter = false;
             })
 
 

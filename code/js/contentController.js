@@ -15,7 +15,6 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
         if (initTimer == 0) {
          refreshClauses.refreshcontent(function (response) {
              console.log("Content refresh");
-
          })
         }
         initTimer += 1;

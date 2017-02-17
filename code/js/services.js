@@ -80,3 +80,5 @@ app.service('refreshClauses', function ($http, $rootScope, handleScopesService) 
     refreshcontent:refreshcontent
     }
 });
+
+

@@ -30,7 +30,6 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
                 $scope[scopeVariableName] = response.data;
 
-
             })
 
     };
@@ -47,6 +46,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
     $scope.updateContent = function () {
 
+        handleScopesService.getScopeOf(0).loadingfilter = true;
 
         var filterQuery = "WHERE " ;
 
@@ -69,6 +69,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
             .then(function (response) {
 
                 handleScopesService.getScopeOf(0).clauses = response.data;
+                handleScopesService.getScopeOf(0).loadingfilter = false;
 
             })
 
