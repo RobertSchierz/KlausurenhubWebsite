@@ -1,7 +1,7 @@
 /**
  * Created by Rober on 07.02.2017.
  */
-var searchController = app.controller('searchcontroller', function ($scope, $http, $rootScope, sharedScopeofSearchData, sharedScopeofContentData) {
+var searchController = app.controller('searchcontroller', function ($scope, $http, $rootScope, handleScopesService) {
 
 
     $scope.hidesearchbar = true;
@@ -22,12 +22,12 @@ var searchController = app.controller('searchcontroller', function ($scope, $htt
         var requestData = {'searchvalue': $scope.searchvalue};
 
 
-        //var contentscope = sharedScopeofContentData.getList();
 
         $http.post('../php/getSearchResult.php', requestData)
             .then(function (response) {
-                console.log(response.data);
-                $rootScope.clauses = response.data;
+
+                handleScopesService.getScopeOf(0).clauses = response.data;
+               // $rootScope.clauses = response.data;
 
 
             })
@@ -35,5 +35,5 @@ var searchController = app.controller('searchcontroller', function ($scope, $htt
 
     }
 
-    sharedScopeofSearchData.addsearchScope($scope);
+    handleScopesService.addScopeOf(2, $scope);
 });

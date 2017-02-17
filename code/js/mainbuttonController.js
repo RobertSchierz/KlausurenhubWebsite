@@ -1,7 +1,7 @@
 /**
  * Created by Rober on 07.02.2017.
  */
-var mainButtonController = app.controller('mainbuttoncontroller', function ($scope, sharedScopeofFilterData, sharedScopeofSearchData) {
+var mainButtonController = app.controller('mainbuttoncontroller', function ($scope, handleScopesService) {
 
     $scope.initMainButtons = function () {
         $scope.handlefilteractivation = "deactivatedbutton";
@@ -12,8 +12,8 @@ var mainButtonController = app.controller('mainbuttoncontroller', function ($sco
 
     $scope.handleClickedMainButtons = function (event) {
 
-        var filterscope = sharedScopeofFilterData.getsearchScope();
-        var searchscope = sharedScopeofSearchData.getsearchScope();
+        var filterscope = handleScopesService.getScopeOf(1);
+        var searchscope = handleScopesService.getScopeOf(2);
 
 
         if (filterActive && !searchActive) {

@@ -1,15 +1,15 @@
 %PDF-1.4
 %ÓôÌá
 % PDFsharp Version 0.8.494 (verbose mode)
-% Creation date: 15.02.2017 23:04:15             
-% Creation time: 0.625 seconds                   
-% File size:     30472 bytes                     
+% Creation date: 16.02.2017 22:27:48             
+% Creation time: 0.516 seconds                   
+% File size:     31526 bytes                     
 % Pages:         1                               
 % Objects:       13                              
 %--------------------------------------------------------------------------------------------------
 1 0 obj   % PdfSharp.Pdf.PdfDocumentInformation
 <<
-  /CreationDate (D:20170215230415+01'00')
+  /CreationDate (D:20170216222748+01'00')
   /Creator (PDFsharp 0.8.494 \(www.pdfsharp.com\))
   /Producer (PDFsharp 0.8.494 \(www.pdfsharp.com\))
 >>
@@ -42,7 +42,7 @@ endobj
 %--------------------------------------------------------------------------------------------------
 5 0 obj   % PdfSharp.Pdf.Advanced.PdfContent
 <<
-  /Length 6072
+  /Length 7126
 >>
 stream
 q
@@ -52,8 +52,8 @@ BT
 /GS0 gs
 /F0 -13 Tf
 182.44 51.19 Td (     Stundenplan für Studierende) Tj
--30.894 24.405 Td (3. Semester  / Medieninformatik Master  /  M-MI) Tj
-50.546 25 Td (Sommersemester 2017 / Zug 1) Tj
+-29.453 24.405 Td (1. Semester  / Architektur Bachelor  /  B-ARCH) Tj
+49.105 25 Td (Sommersemester 2017 / Zug 1) Tj
 ET
 2 w
 0 J
@@ -247,210 +247,247 @@ BT
 154.4 0 Td (Zug 1) Tj
 ET
 1 1 1 rg
+204.4 214.483 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+206.4 223.483 Td (D 120 A-Semraum) Tj
+/F1 -7 Tf
+127.042 0 Td (153094) Tj
+-127.042 29.042 Td (Lattermann, Klaus) Tj
+0 -21.104 Td (Darstellende Geometrie in der Architektur / SU) Tj
+ET
+1 1 1 rg
+204.4 160 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+206.4 169 Td (D 120 A-Semraum) Tj
+/F1 -7 Tf
+127.042 0 Td (153094) Tj
+-29.176 29.042 Td (14-tgl. nach Plan) Tj
+-97.866 0 Td (Lattermann, Klaus) Tj
+0 -21.104 Td (Darstellende Geometrie in der Architektur / SU) Tj
+ET
+1 1 1 rg
+513.2 160 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+515.2 169 Td (D 101 / H1) Tj
+/F1 -7 Tf
+127.042 0 Td (153067) Tj
+-127.042 29.042 Td (Kieren, Martin) Tj
+0 -21.104 Td (Baugeschichte und Architekturlehre / SU) Tj
+ET
+1 1 1 rg
+204.4 377.931 77.2 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+206.4 386.931 Td (D 340) Tj
+/F1 -7 Tf
+49.842 0 Td (153068) Tj
+-7.762 29.042 Td (14-tgl. Gr. ) Tj
+-42.079 0 Td (Goebel, Be) Tj
+0 -21.104 Td (Baugeschichte und) Tj
+0 8 Td (Architekturlehre Übg. / ) Tj
+ET
+1 1 1 rg
+667.6 282.586 77.2 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+669.6 291.586 Td (D 349 L) Tj
+/F1 -7 Tf
+49.842 0 Td (153095) Tj
+-7.762 29.042 Td (14-tgl. Gr. ) Tj
+-42.079 0 Td (Studzinski, ) Tj
+0 -21.104 Td (Darstellende Geometrie) Tj
+0 8 Td (in der Architektur Übg. / ) Tj
+ET
+1 1 1 rg
 50 377.931 154.4 39.862 re
 B
 BT
 0 0 0 rg
 /F1 -8 Tf
-52 386.931 Td (D 138 L) Tj
+52 386.931 Td (D 119 A-Semraum) Tj
 /F1 -7 Tf
-127.042 0 Td (159083) Tj
--127.042 29.042 Td (Löser, Alexander) Tj
-/F1 -8 Tf
-0 -21.104 Td (Enterprise Data Management / SU) Tj
-ET
-1 1 1 rg
-50 425.603 154.4 39.862 re
-B
-BT
-0 0 0 rg
-52 434.603 Td (D 138 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159084) Tj
--127.042 29.042 Td (Löser, Alexander) Tj
-/F1 -8 Tf
-0 -21.104 Td (Enterprise Data Management Übg. / Ü) Tj
-ET
-1 1 1 rg
-50 214.483 154.4 39.862 re
-B
-BT
-0 0 0 rg
-52 223.483 Td (B 223 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159089) Tj
--127.042 29.042 Td (Steppat, Michael) Tj
-/F1 -8 Tf
-0 -21.104 Td (Entwicklung Mobiler Applikationen / SU) Tj
-ET
-1 1 1 rg
-50 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-52 284.776 Td (B 223 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159090) Tj
--127.042 29.042 Td (Steppat, Michael) Tj
-/F1 -8 Tf
-0 -21.104 Td (Entwicklung Mobiler Applikationen Übg. /) Tj
-0 9 Td (Ü) Tj
-ET
-1 1 1 rg
-667.6 214.483 154.4 39.862 re
-B
-BT
-0 0 0 rg
-669.6 223.483 Td (B 321) Tj
-/F1 -7 Tf
-127.042 0 Td (159095) Tj
--127.042 29.042 Td (Hildebrand, Kristian) Tj
-/F1 -8 Tf
-0 -21.104 Td (Interactive Systems / SU) Tj
-ET
-1 1 1 rg
-667.6 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-669.6 284.776 Td (B 332 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159096) Tj
--127.042 29.042 Td (Hildebrand, Kristian) Tj
-/F1 -8 Tf
-0 -21.104 Td (Interactive Systems Übg. / Ü) Tj
-ET
-1 1 1 rg
-358.8 214.483 154.4 39.862 re
-B
-BT
-0 0 0 rg
-360.8 223.483 Td ( ) Tj
-/F1 -7 Tf
-127.042 0 Td (159078) Tj
+127.042 0 Td (153002) Tj
 3.907 29.042 Td (Gr. 1a) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
-ET
-1 1 1 rg
-358.8 275.776 154.4 39.862 re
-B
-BT
-0 0 0 rg
-360.8 284.776 Td ( ) Tj
-/F1 -7 Tf
-127.042 0 Td (159078) Tj
-3.907 29.042 Td (Gr. 1a) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
-ET
-1 1 1 rg
-358.8 330.259 154.4 39.862 re
-B
-BT
-0 0 0 rg
-360.8 339.259 Td ( ) Tj
-/F1 -7 Tf
-127.042 0 Td (159078) Tj
-3.907 29.042 Td (Gr. 1a) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+-130.948 0 Td (Pöhle, Frank) Tj
+0 -7.82 Td (Schmidt, Jan) Tj
+0 -13.284 Td (Gebäudeentwurf I Übg. / Ü) Tj
 ET
 1 1 1 rg
 358.8 160 154.4 39.862 re
 B
 BT
 0 0 0 rg
-360.8 169 Td (B 321) Tj
+/F1 -8 Tf
+360.8 169 Td (D 120 A-Semraum) Tj
 /F1 -7 Tf
-127.042 0 Td (159078) Tj
+127.042 0 Td (153007) Tj
+-127.042 29.042 Td (Artemova, Inna) Tj
+0 -7.82 Td (Sedelies, Gerd) Tj
+0 -13.284 Td (Gestaltung und Präsentation I / SU) Tj
+ET
+1 1 1 rg
+513.2 214.483 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+515.2 223.483 Td (D 101 / H1) Tj
+/F1 -7 Tf
+127.042 0 Td (153067) Tj
+-127.042 29.042 Td (Kieren, Martin) Tj
+0 -21.104 Td (Baugeschichte und Architekturlehre / SU) Tj
+ET
+1 1 1 rg
+281.6 377.931 77.2 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+283.6 386.931 Td (D 340) Tj
+/F1 -7 Tf
+49.842 0 Td (153068) Tj
+-7.762 29.042 Td (14-tgl. Gr. ) Tj
+-42.079 0 Td (Goebel, Be) Tj
+0 -21.104 Td (Baugeschichte und) Tj
+0 8 Td (Architekturlehre Übg. / ) Tj
+ET
+1 1 1 rg
+744.8 282.586 77.2 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+746.8 291.586 Td (D 349 L) Tj
+/F1 -7 Tf
+49.842 0 Td (153095) Tj
+-7.762 29.042 Td (14-tgl. Gr. ) Tj
+-42.079 0 Td (Studzinski, ) Tj
+0 -21.104 Td (Darstellende Geometrie) Tj
+0 8 Td (in der Architektur Übg. / ) Tj
+ET
+1 1 1 rg
+50 282.586 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+52 291.586 Td (D 101 / H1) Tj
+/F1 -7 Tf
+127.042 0 Td (153093) Tj
+-127.042 29.042 Td (Essig, Mathias) Tj
+0 -21.104 Td (Entwerfen u. Konstruieren in Massivbauweise /) Tj
+0 8 Td (SU) Tj
+ET
+1 1 1 rg
+50 330.259 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+52 339.259 Td (D 102 / H2) Tj
+/F1 -7 Tf
+127.042 0 Td (153001) Tj
+-127.042 29.042 Td (Pöhle, Frank) Tj
+0 -7.82 Td (Schmidt, Jan) Tj
+0 -13.284 Td (Gebäudeentwurf I / SU) Tj
+ET
+1 1 1 rg
+358.8 282.586 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+360.8 291.586 Td (SWE 451) Tj
+/F1 -7 Tf
+127.042 0 Td (153008) Tj
+3.907 29.042 Td (Gr. 1b) Tj
+-130.948 0 Td (Sedelies, Gerd) Tj
+0 -7.82 Td (Artemova, Inna) Tj
+0 -13.284 Td (Gestaltung und Präsentation I Übg. / Ü) Tj
+ET
+1 1 1 rg
+204.4 282.586 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+206.4 291.586 Td (D 101 / H1) Tj
+/F1 -7 Tf
+127.042 0 Td (153094) Tj
+-29.176 29.042 Td (14-tgl. nach Plan) Tj
+-97.866 0 Td (Lattermann, Klaus) Tj
+0 -7.82 Td (Lütcke, Carl-Georg) Tj
+0 -13.284 Td (Darstellende Geometrie in der Architektur / SU) Tj
+ET
+1 1 1 rg
+50 160 154.4 39.862 re
+B
+BT
+0 0 0 rg
+/F1 -8 Tf
+52 169 Td (D 120 A-Semraum) Tj
+/F1 -7 Tf
+127.042 0 Td (153108) Tj
 3.907 29.042 Td (Gr. 1a) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+-130.948 0 Td (Albert, Manuel) Tj
+0 -7.82 Td (Essig, Mathias) Tj
+0 -13.284 Td (Entwerfen u. Konstruieren in Massivbauweise Ü) Tj
 ET
 1 1 1 rg
-513.2 425.603 154.4 39.862 re
+50 214.483 154.4 39.862 re
 B
 BT
 0 0 0 rg
-515.2 434.603 Td ( ) Tj
+/F1 -8 Tf
+52 223.483 Td (D 120 A-Semraum) Tj
 /F1 -7 Tf
-127.042 0 Td (159078) Tj
+127.042 0 Td (153108) Tj
 3.907 29.042 Td (Gr. 1b) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+-130.948 0 Td (Albert, Manuel) Tj
+0 -7.82 Td (Essig, Mathias) Tj
+0 -13.284 Td (Entwerfen u. Konstruieren in Massivbauweise Ü) Tj
 ET
 1 1 1 rg
-513.2 473.276 154.4 39.862 re
+50 425.603 154.4 39.862 re
 B
 BT
 0 0 0 rg
-515.2 482.276 Td ( ) Tj
+/F1 -8 Tf
+52 434.603 Td (D 119 A-Semraum) Tj
 /F1 -7 Tf
-127.042 0 Td (159078) Tj
+127.042 0 Td (153002) Tj
 3.907 29.042 Td (Gr. 1b) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
+-130.948 0 Td (Pöhle, Frank) Tj
+0 -7.82 Td (Schmidt, Jan) Tj
+0 -13.284 Td (Gebäudeentwurf I Übg. / Ü) Tj
 ET
 1 1 1 rg
-358.8 377.931 154.4 39.862 re
+358.8 214.483 154.4 39.862 re
 B
 BT
 0 0 0 rg
-360.8 386.931 Td ( ) Tj
-/F1 -7 Tf
-127.042 0 Td (159078) Tj
-3.907 29.042 Td (Gr. 1b) Tj
--130.948 0 Td (Macos, Dragan) Tj
 /F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
-ET
-1 1 1 rg
-358.8 425.603 154.4 39.862 re
-B
-BT
-0 0 0 rg
-360.8 434.603 Td ( ) Tj
+360.8 223.483 Td (SWE 445) Tj
 /F1 -7 Tf
-127.042 0 Td (159078) Tj
-3.907 29.042 Td (Gr. 1b) Tj
--130.948 0 Td (Macos, Dragan) Tj
-/F1 -8 Tf
-0 -21.104 Td (Masterprojekt Übg. / Ü) Tj
-ET
-1 1 1 rg
-667.6 330.259 154.4 39.862 re
-B
-BT
-0 0 0 rg
-669.6 339.259 Td (B 321\rB 332 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159101) Tj
--127.042 29.042 Td (Härting, Ute) Tj
-0 -7.82 Td (Oehmichen, Peter) Tj
-/F1 -8 Tf
-0 -13.022 Td (Transmediale Gestaltung interaktiver Szen) Tj
-ET
-1 1 1 rg
-667.6 377.931 154.4 39.862 re
-B
-BT
-0 0 0 rg
-669.6 386.931 Td (B 321\rB 332 L) Tj
-/F1 -7 Tf
-127.042 0 Td (159102) Tj
--127.042 29.042 Td (Härting, Ute) Tj
-0 -7.82 Td (Oehmichen, Peter) Tj
-/F1 -8 Tf
-0 -13.022 Td (Transmediale Gestaltung interaktiver Szen) Tj
-/F1 -7 Tf
--398.215 172.96 Td (Stand: 15. Februar 2017 um 23:04, aktuellste Version unter http://www.beuth-hochschule.de/vrp.) Tj
+127.042 0 Td (153008) Tj
+3.907 29.042 Td (Gr. 1a) Tj
+-130.948 0 Td (Sedelies, Gerd) Tj
+0 -7.82 Td (Artemova, Inna) Tj
+0 -13.284 Td (Gestaltung und Präsentation I Übg. / Ü) Tj
+-89.415 336.67 Td (Stand: 16. Februar 2017 um 22:27, aktuellste Version unter http://www.beuth-hochschule.de/vrp.) Tj
 482.808 0 Td (Seite  1 von 1) Tj
 ET
 Q
@@ -650,21 +687,21 @@ xref
 0000000903 00000 n 
 0000001092 00000 n 
 0000001331 00000 n 
-0000007593 00000 n 
-0000007934 00000 n 
-0000008121 00000 n 
-0000008470 00000 n 
-0000009805 00000 n 
-0000009993 00000 n 
-0000028352 00000 n 
-0000028697 00000 n 
+0000008647 00000 n 
+0000008988 00000 n 
+0000009175 00000 n 
+0000009524 00000 n 
+0000010859 00000 n 
+0000011047 00000 n 
+0000029406 00000 n 
+0000029751 00000 n 
 trailer
 <<
-  /ID [<271F176683306345827B7112E5C524C1><271F176683306345827B7112E5C524C1>]
+  /ID [<B00C012873E69840AA812A470E78CFB7><B00C012873E69840AA812A470E78CFB7>]
   /Info 1 0 R
   /Root 2 0 R
   /Size 14
 >>
 startxref
-30030
+31084
 %%EOF

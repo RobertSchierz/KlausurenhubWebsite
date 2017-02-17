@@ -1,22 +1,22 @@
 /**
  * Created by Rober on 07.02.2017.
  */
-var contentAppController = app.controller('contentcontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
+var contentAppController = app.controller('contentcontroller', function ($scope, $rootScope, $http, refreshClauses, handleScopesService) {
 
-    sharedScopeofContentData.addList($scope);
 
+
+
+
+    handleScopesService.addScopeOf(0, $scope);
 
     $scope.initContent = function () {
 
 
         if (initTimer == 0) {
-            $http.post('../php/getClauses.php').then(function (response) {
+         refreshClauses.refreshcontent(function (response) {
+             console.log("Content refresh");
 
-
-                $rootScope.clauses = response.data;
-                console.log("Content refresh");
-
-            });
+         })
         }
         initTimer += 1;
 
@@ -26,9 +26,8 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
     $scope.getPdfUrl = function () {
 
-        var contentscope = sharedScopeofFilterData.getList();
-
-        return "http://klausurenhub.bplaced.net/" + contentscope.Path;
+        var contentscope = handleScopesService.getScopeOf(0);
+        return "http://klausurenhub.bplaced.net/" + contentscope.clickedClause.Path;
 
     }
 

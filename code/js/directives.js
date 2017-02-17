@@ -44,7 +44,7 @@ app.directive('documentsearchbar', function () {
 });
 
 
-app.directive('displaycontentoverview', function (sharedScopeofContentData, sharedScopeofFilterData) {
+app.directive('displaycontentoverview', function (handleScopesService) {
 
     function handleContent($scope, elem, attrs) {
 
@@ -52,14 +52,15 @@ app.directive('displaycontentoverview', function (sharedScopeofContentData, shar
 
 
         $scope.back = function () {
-            sharedScopeofFilterData.getsearchScope().updateContent();
+            handleScopesService.getScopeOf(1).updateContent();
             $scope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
 
 
         }
 
         $scope.changeToContentView = function (clause) {
-            sharedScopeofFilterData.addList(clause);
+           /* sharedScopeofFilterData.addList(clause);
+            handleScopesService.getScopeOf(1).clauses */
             $scope.clickedClause = clause;
             $scope.url = "../loadedhtml/content/clauseContentDisplay.html";
 
@@ -362,14 +363,14 @@ app.directive("dropzone", function () {
     }
 })
 
-app.directive("uploadeditor", function (sharedScopeofFilterData, $http, $rootScope) {
+app.directive("uploadeditor", function ($http, $rootScope, handleScopesService) {
 
 
     function editorinit($scope) {
 
         $scope.decisionsForFiles = [];
 
-        $scope.filterscope = sharedScopeofFilterData.getsearchScope();
+        $scope.filterscope = handleScopesService.getScopeOf(1);
 
 
         resetDecisionHeader();

@@ -1,9 +1,10 @@
 /**
  * Created by Rober on 07.02.2017.
  */
-var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, sharedScopeofContentData, sharedScopeofFilterData) {
+var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, handleScopesService) {
 
-    sharedScopeofFilterData.addsearchScope($scope);
+   // sharedScopeofFilterData.addsearchScope($scope);
+    handleScopesService.addScopeOf(1, $scope);
 
 
     $scope.setFilterStandardValues = function () {
@@ -89,7 +90,8 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
         $http.post('../php/getFilteredQuery.php', requestData)
             .then(function (response) {
 
-                $rootScope.clauses = response.data;
+                handleScopesService.getScopeOf(0).clauses = response.data;
+                //$rootScope.clauses = response.data;
 
 
 
@@ -100,7 +102,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
         initTimer = 0;
 
-        var sharedscope = sharedScopeofContentData.getList();
+        var sharedscope = handleScopesService.getScopeOf(0);
 
         sharedscope.url = "../loadedhtml/content/clauseOverviewDisplay.html";
         sharedscope.initContent();
