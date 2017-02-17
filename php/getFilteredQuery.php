@@ -9,7 +9,24 @@ $data = file_get_contents("php://input");
 $request = json_decode($data);
 
 
-$query = $request->query;
+$query = " SELECT *
+          FROM clauses
+          LEFT JOIN courses
+          ON clauses.courseID = courses.courseID
+          LEFT JOIN schools
+          ON clauses.schoolID = schools.schoolID
+          LEFT JOIN degrees
+          ON clauses.degreeID = degrees.degreeID
+          LEFT JOIN semesters
+          ON clauses.semesterID = semesters.semesterID
+          LEFT JOIN subjects
+          ON clauses.subjectID = subjects.subjectID
+          LEFT JOIN teachers
+          ON clauses.teacherID = teachers.teacherID
+          LEFT JOIN years
+          ON clauses.yearID = years.yearID   $request->query ";
+
+
 
 $result = mysqli_query($con, $query);
 
@@ -23,5 +40,7 @@ $arr[] = $row;
 
 
 echo  json_encode($arr);
+
+
 ?>
 

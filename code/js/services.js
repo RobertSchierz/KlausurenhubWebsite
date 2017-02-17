@@ -2,72 +2,6 @@
  * Created by Rober on 07.02.2017.
  */
 
-/*
-app.service('sharedScopeofSearchData', function () {
-    var sharesearchscope = {};
-
-
-    var addsearchscope = function (newObj) {
-        sharesearchscope = newObj;
-    }
-
-    var getsearchscope = function () {
-        return sharesearchscope;
-    }
-
-    return {
-        addsearchScope: addsearchscope,
-        getsearchScope: getsearchscope
-    };
-});
-
-app.service('sharedScopeofContentData', function () {
-    var myList = {};
-
-    var addList = function (newObj) {
-        myList = newObj;
-    }
-
-    var getList = function () {
-        return myList;
-    }
-
-    return {
-        addList: addList,
-        getList: getList
-    };
-});
-
-app.service('sharedScopeofFilterData', function () {
-    var shareclause = {};
-    var sharescope = {};
-
-    var addclause = function (newObj) {
-        shareclause = newObj;
-    }
-
-    var getclause = function () {
-        return shareclause;
-    }
-
-    var addscope = function (newObj) {
-        sharescope = newObj;
-    }
-
-    var getscope = function () {
-        return sharescope;
-    }
-
-    return {
-        addList: addclause,
-        getList: getclause,
-        addsearchScope: addscope,
-        getsearchScope: getscope
-    };
-});
-
-*/
-
 
 app.service('handleScopesService', function(){
 
@@ -126,7 +60,7 @@ app.service('refreshClauses', function ($http, $rootScope, handleScopesService) 
     
     var refreshcontent = function (callback) {
 
-    $rootScope.loading = true;
+        handleScopesService.getScopeOf(0).loading = true;
 
 
             $http.post('../php/getClauses.php').then(function (response) {
@@ -134,7 +68,7 @@ app.service('refreshClauses', function ($http, $rootScope, handleScopesService) 
                 handleScopesService.getScopeOf(0).clauses = response.data;
 
                 //$rootScope.clauses
-                $rootScope.loading = false;
+                handleScopesService.getScopeOf(0).loading = false;
                 return callback(response);
             })
 

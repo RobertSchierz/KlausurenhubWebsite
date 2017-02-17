@@ -48,25 +48,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
     $scope.updateContent = function () {
 
 
-        var filterQuery = " SELECT * " +
-            " FROM clauses " +
-            " LEFT JOIN courses " +
-            " ON clauses.courseID = courses.courseID " +
-            " LEFT JOIN schools " +
-            " ON clauses.schoolID = schools.schoolID " +
-            " LEFT JOIN degrees " +
-            " ON clauses.degreeID = degrees.degreeID" +
-            " LEFT JOIN semesters " +
-            " ON clauses.semesterID = semesters.semesterID " +
-            " LEFT JOIN subjects " +
-            " ON clauses.subjectID = subjects.subjectID" +
-            " LEFT JOIN teachers " +
-            " ON clauses.teacherID = teachers.teacherID" +
-            " LEFT JOIN years " +
-            " ON clauses.yearID = years.yearID" +
-            " WHERE ";
-
-
+        var filterQuery = "WHERE " ;
 
         for (var key in filter) {
             if (filter.hasOwnProperty(key) && filter[key] != null) {
@@ -75,15 +57,11 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
             }
         }
 
-
         if(Object.keys(filter).length === 0){
             filterQuery = filterQuery.slice(0, -6);
         }else{
             filterQuery = filterQuery.slice(0, -4);
         }
-
-
-
 
         var requestData = {'query': filterQuery };
 
@@ -91,11 +69,12 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
             .then(function (response) {
 
                 handleScopesService.getScopeOf(0).clauses = response.data;
-                //$rootScope.clauses = response.data;
-
-
 
             })
+
+
+
+
     }
 
     $scope.resetFilter = function () {

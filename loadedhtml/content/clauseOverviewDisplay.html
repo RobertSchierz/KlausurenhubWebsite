@@ -11,7 +11,15 @@
 
 
                     <div class="row">
-                        <canvas ng-click="changeToContentView(clause)" ng-attr-id="{{ clause.clauseID }}" class="col-sm-12 col-md-12 col-xs-12 thumbnailcanvas"></canvas>
+
+
+                        <img src="/./images/loading/thumbloader.gif" class="thumbloader">
+
+                            <canvas class="col-sm-12 col-md-12 col-xs-12 thumbnailcanvas"  ng-click="changeToContentView(clause)" ng-attr-id="{{ clause.clauseID }}" >
+
+
+                            </canvas>
+
                     </div>
 
                     <div class="row contenttext">

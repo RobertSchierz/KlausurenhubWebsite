@@ -37,6 +37,7 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
 
             pdf.getPage(1).then(function getPageHelloWorld(page) {
+
                 var scale = 0.2;
                 var viewport = page.getViewport(scale);
 
@@ -51,7 +52,10 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
                 //
                 // Render PDF page into canvas context
                 //
+
                 page.render({canvasContext: context, viewport: viewport});
+
+
             });
         });
 

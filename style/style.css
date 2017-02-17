@@ -451,6 +451,12 @@ cursor: pointer;
     display: none;
 }
 
+.thumbloader{
+    position: absolute;
+    left: calc(50% - 32px);
+    top: 40px;
+}
+
 
 
 
@@ -476,8 +482,11 @@ cursor: pointer;
 
 @media (max-width: 720px) {
 
-    #login {
-        margin-right: -5px;
+
+    #facebooknamespan{
+        display: none !important;
+        font-size: 15px;
+        margin-top: 15px;
     }
 
 }
