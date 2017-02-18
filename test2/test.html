@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="/extern/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="/extern/bootstrap/css/bootstrap.css">
+    <script src="/extern/bootstrap/js/bootstrap.js"></script>
+    <script src="/extern/angularjs/angularjs.js"></script>
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script src='test.js'></script>
+
+</head>
+<body ng-app="testapp" ng-cloak>
+
+
+
+
+
+<div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak>
+
+        <form ng-submit="$event.preventDefault()">
+            <md-autocomplete
+                    md-no-cache="ctrl.noCache"
+                    md-selected-item="ctrl.selectedItemSchool"
+                    md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSchool)"
+                    md-search-text="ctrl.searchTextSchool"
+                    md-selected-item-change="ctrl.selectedItemChange(item)"
+                    md-items="item in ctrl.querySearch(ctrl.searchTextSchool, 'school')"
+                    md-item-text="item.schoolName"
+                    md-min-length="0"
+                    placeholder="{{schoolheader}}">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.searchTextSchool" >{{item.schoolName}}</span>
+                    <span>{{item.schoolCount}}</span>
+                </md-item-template>
+                <md-not-found>
+                    Eingabe nicht gefunden: "{{ctrl.searchTextSchool}}" .
+                </md-not-found>
+            </md-autocomplete>
+        </form>
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemTeacher"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextTeacher)"
+                md-search-text="ctrl.searchTextTeacher"
+                md-selected-item-change="ctrl.selectedItemChange(item)"
+                md-items="item in ctrl.querySearch(ctrl.searchTextTeacher, 'teacher')"
+                md-item-text="item.teacherName"
+                md-min-length="0"
+                placeholder="{{teacherheader}}">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchTextTeacher" >{{item.teacherName}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextTeacher}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+</div>
+
+
+
+
+
+</body>
+</html>
