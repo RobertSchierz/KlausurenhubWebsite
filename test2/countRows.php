@@ -11,7 +11,7 @@ $request = json_decode($data, true);
 
 
  $idname = $request['rowname'];
- $id = $request['schoolID'];
+ $id = $request[$request['rowname']];
 
 
 $query = "SELECT COUNT(*)  AS count FROM `clauses`

@@ -6,38 +6,83 @@
     function DemoCtrl ($timeout, $q, $log, $scope, loadfilteroptions, countRows) {
         var self = this;
 
-
-        loadfilteroptions.loadAvailableOptions("schools" ,function(response){
-            $scope.school = response.data;
-
-            for(var i = 0; i < $scope.school.length; i++){
-                $scope.school[i].rowname = "schoolID";
-
-               countRows.getRowsCount($scope.school[i], function(response, item){
-                   item.schoolCount = "(" + response.data[0].count + ")";
-                   console.log($scope.school);
-               })
-            }
-
-        });
-
-        loadfilteroptions.loadAvailableOptions("teachers" ,function(response){
-            $scope.teacher = response.data;
-        });
-
-
         // list of `state` value/display objects
         self.querySearch   = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange   = searchTextChange;
         $scope.schoolheader = "Hochschulen";
         $scope.teacherheader = "Lehrkraft";
+        $scope.courseheader = "Studiengang";
+        $scope.subjectheader = "Modul";
+        $scope.degreeheader = "Grad";
+        $scope.semesterheader = "Semester";
+        $scope.yearheader = "Jahr";
+
+
+        $scope.loadingFilters = 0;
+        $scope.filterDisabled = false;
+
+
+        $scope.getCountRowsForItems = function (scopevar, rowname, scopeRowcountname) {
+            for(var i = 0; i < scopevar.length; i++){
+                scopevar[i].rowname = rowname;
+
+                countRows.getRowsCount(scopevar[i], function(response, item){
+                    item[scopeRowcountname] = "(" + response.data[0].count + ")";
+
+                })
+            }
+        }
+
+
+
+
+        loadfilteroptions.loadAvailableOptions("schools" ,function(response){
+            $scope.school = response.data;
+
+            $scope.getCountRowsForItems($scope.school, "schoolID", "schoolCount");
+
+        });
+
+        loadfilteroptions.loadAvailableOptions("teachers" ,function(response){
+            $scope.teacher = response.data;
+            $scope.getCountRowsForItems($scope.teacher, "teacherID", "teacherCount");
+
+        });
+
+        loadfilteroptions.loadAvailableOptions("courses" ,function(response){
+            $scope.course = response.data;
+            $scope.getCountRowsForItems($scope.course, "courseID", "courseCount");
+        });
+
+        loadfilteroptions.loadAvailableOptions("subjects" ,function(response){
+            $scope.subject = response.data;
+            $scope.getCountRowsForItems( $scope.subject, "subjectID", "subjectCount");
+        });
+
+        loadfilteroptions.loadAvailableOptions("degrees" ,function(response){
+            $scope.degree = response.data;
+            $scope.getCountRowsForItems( $scope.degree, "degreeID", "degreeCount");
+        });
+
+        loadfilteroptions.loadAvailableOptions("semesters" ,function(response){
+            $scope.semester = response.data;
+            $scope.getCountRowsForItems( $scope.semester, "semesterID", "semesterCount");
+        });
+
+        loadfilteroptions.loadAvailableOptions("years" ,function(response){
+            $scope.year = response.data;
+            $scope.getCountRowsForItems( $scope.year, "yearID", "yearCount");
+        });
+
+
+
 
 
 
 
         function querySearch (query, source) {
-            console.log(source);
+
             var results = query ? $scope[source].filter( createFilterFor(query, source) ) : $scope[source],
                 deferred;
                 return results;

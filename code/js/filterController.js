@@ -37,8 +37,7 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
     $scope.setFilterelementToDecision = function (selectedItem, header, source) {
         $scope[header] = selectedItem[source + "Name"];
         filter[source + "ID"] = selectedItem[source + "ID"];
-
-
+        console.log(filter);
         $scope.updateContent();
 
 
