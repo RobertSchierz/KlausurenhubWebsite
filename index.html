@@ -6,12 +6,21 @@
     <title></title>
 
 
+
+
+
+
     <link rel="stylesheet" href="extern/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/filter.css">
     <link rel="stylesheet" href="style/loading.css">
     <link rel="stylesheet" href="style/loadingfilter.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="extern/angularmaterial/angularmaterial.css">
+
+
+
+
 
     <script src="extern/jquery/jquery.js"></script>
     <script src="extern/bootstrap/js/bootstrap.js"></script>
@@ -23,6 +32,19 @@
 
 
 
+    <!-- Angular Material Library -->
+    <script src="extern/angularmaterial/angular-aria.js"></script>
+    <script src="extern/angularmaterial/angularmaterial.js"></script>
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="extern/angularmaterial/angular-animate.js"></script>
+
+
+
+
+
+
 
     <script src="code/js/directives.js"></script>
     <script src="code/js/services.js"></script>
@@ -30,9 +52,10 @@
     <script src="code/js/loginController.js"></script>
     <script src="code/js/facebookController.js"></script>
     <script src="code/js/filterController.js"></script>
+
     <script src="code/js/searchController.js"></script>
     <script src="code/js/mainbuttonController.js"></script>
-
+    <script src="code/js/filterautocompletementController.js"></script>
 
 
     <script src="code/js/facebooklogin.js"></script>
@@ -41,7 +64,7 @@
 
 
 </head>
-<body ng-app="app" >
+<body ng-app="app" ng-cloak>
 
 
 <div class="container-fluid  headerpanel" id="header">

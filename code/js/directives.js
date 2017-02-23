@@ -3,7 +3,7 @@
  */
 
 
-var app = angular.module('app', ['ngAnimate', 'ngSanitize', 'facebook']);
+var app = angular.module('app', ['ngAnimate', 'ngSanitize', 'facebook', 'ngMaterial']);
 
 angular.module('app').config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(['**']);
@@ -15,16 +15,12 @@ angular.module('app').config(function (FacebookProvider) {
 
 
 var filter = {};
-var initTimer = 0;
+ var initTimer = 0;
 
 var filterActive = true;
 var searchActive = false;
 
-function resetFilter() {
-    filter = { };
-}
 
-resetFilter();
 
 
 app.directive('filterelements', function () {

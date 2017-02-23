@@ -1,3 +1,174 @@
+
+
+<div ng-init="setFilterStandardValues()" ng-controller="AutocompleteController as ctrl" layout="column" ng-cloak class="filterautodiv">
+
+    <form ng-submit="$event.preventDefault()" >
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemSchool"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSchool)"
+                md-search-text="ctrl.searchTextSchool"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'school')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextSchool, 'school')"
+                md-item-text="item.schoolName"
+                md-min-length="0"
+                placeholder="{{schoolheader}}">
+            <md-item-template >
+                <span class="filterautospan"   md-highlight-text="ctrl.searchTextSchool" >{{item.schoolName}}</span>
+                <span  class="filterautospan" >{{item.schoolCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextSchool}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemTeacher"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextTeacher)"
+                md-search-text="ctrl.searchTextTeacher"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'teacher')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextTeacher, 'teacher')"
+                md-item-text="item.teacherName"
+                md-min-length="0"
+                placeholder="{{teacherheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextTeacher" >{{item.teacherName}}</span>
+                <span class="filterautospan">{{item.teacherCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextTeacher}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemCourse"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextCourse)"
+                md-search-text="ctrl.searchTextCourse"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'course')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextCourse, 'course')"
+                md-item-text="item.courseName"
+                md-min-length="0"
+                placeholder="{{courseheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextCourse" >{{item.courseName}}</span>
+                <span class="filterautospan">{{item.courseCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextCourse}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemSubject"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSubject)"
+                md-search-text="ctrl.searchTextSubject"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'subject')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextSubject, 'subject')"
+                md-item-text="item.subjectName"
+                md-min-length="0"
+                placeholder="{{subjectheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextSubject" >{{item.subjectName}}</span>
+                <span class="filterautospan">{{item.subjectCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextSubject}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemDegree"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextDegree)"
+                md-search-text="ctrl.searchTextDegree"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'degree')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextDegree, 'degree')"
+                md-item-text="item.degreeName"
+                md-min-length="0"
+                placeholder="{{degreeheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextDegree" >{{item.degreeName}}</span>
+                <span class="filterautospan">{{item.degreeCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextDegree}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemSemester"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSemester)"
+                md-search-text="ctrl.searchTextSemester"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'semester')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextSemester, 'semester')"
+                md-item-text="item.semesterName"
+                md-min-length="0"
+                placeholder="{{semesterheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextSemester" >{{item.semesterName}}</span>
+                <span class="filterautospan">{{item.semesterCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextSemester}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+
+    <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+                ng-disabled="filterDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItemYear"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchTextYear)"
+                md-search-text="ctrl.searchTextYear"
+                md-selected-item-change="ctrl.selectedItemChange(item, 'year')"
+                md-items="item in ctrl.querySearch(ctrl.searchTextYear, 'year')"
+                md-item-text="item.yearName"
+                md-min-length="0"
+                placeholder="{{yearheader}}">
+            <md-item-template>
+                <span class="filterautospan" md-highlight-text="ctrl.searchTextYear" >{{item.yearName}}</span>
+                <span class="filterautospan">{{item.yearCount}}</span>
+            </md-item-template>
+            <md-not-found>
+                Eingabe nicht gefunden: "{{ctrl.searchTextYear}}" .
+            </md-not-found>
+        </md-autocomplete>
+    </form>
+
+    <button class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" id="resetfilter" type="button" ng-click="resetFilter()" ng-class="handlesearchactivation" ng-disabled="searchdisablehandler"> Filter zurücksetzen</button>
+
+
+
+</div>
+
+
+
+<!--
+
 <div class="container-fluid" id="filterelements" ng-controller="filtercontroller" ng-init="setFilterStandardValues()">
 
     <div class="row">
@@ -103,3 +274,6 @@
 
 
         <button class="col-lg-12 col-md-12 col-xs-12 texttomid filterandsearch_panel" id="resetfilter" type="button" ng-click="resetFilter()" ng-class="handlesearchactivation" ng-disabled="searchdisablehandler"> Filter zurücksetzen</button>
+
+
+-->

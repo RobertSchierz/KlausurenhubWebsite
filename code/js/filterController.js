@@ -1,10 +1,15 @@
 /**
  * Created by Rober on 07.02.2017.
  */
+    /*
 var filterAppController = app.controller('filtercontroller', function ($scope, $rootScope, $http, handleScopesService) {
 
    // sharedScopeofFilterData.addsearchScope($scope);
-    handleScopesService.addScopeOf(1, $scope);
+
+        handleScopesService.addScopeOf(1, $scope);
+        console.log("amk");
+
+
 
 
     $scope.setFilterStandardValues = function () {
@@ -91,3 +96,5 @@ var filterAppController = app.controller('filtercontroller', function ($scope, $
 
 
 });
+
+        */

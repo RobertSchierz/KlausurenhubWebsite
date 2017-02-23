@@ -5,8 +5,6 @@ var contentAppController = app.controller('contentcontroller', function ($scope,
 
 
 
-
-
     handleScopesService.addScopeOf(0, $scope);
 
     $scope.initContent = function () {

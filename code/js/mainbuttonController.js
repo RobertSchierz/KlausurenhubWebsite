@@ -16,9 +16,12 @@ var mainButtonController = app.controller('mainbuttoncontroller', function ($sco
         var searchscope = handleScopesService.getScopeOf(2);
 
 
+
+
         if (filterActive && !searchActive) {
             $scope.handlefilteractivation = "";
             $scope.handlesearchactivation = "deactivatedbutton";
+            filterscope.filterDisabled = true;
 
 
             filterscope.handlesearchactivation = "deactivatedbutton";
@@ -32,6 +35,9 @@ var mainButtonController = app.controller('mainbuttoncontroller', function ($sco
         } else if (!filterActive && searchActive) {
             $scope.handlesearchactivation = "";
             $scope.handlefilteractivation = "deactivatedbutton";
+            filterscope.filterDisabled = false;
+
+            console.log(filterscope);
 
             filterscope.handlesearchactivation = "";
 
@@ -39,6 +45,7 @@ var mainButtonController = app.controller('mainbuttoncontroller', function ($sco
             filterActive = true;
 
             searchscope.handleSearchbar(true);
+
 
 
         }
